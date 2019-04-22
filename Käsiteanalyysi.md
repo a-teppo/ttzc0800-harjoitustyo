@@ -7,7 +7,7 @@ Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. Turnauksella tarko
 _Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. __Turnauksella__ tarkoitetaan tapahtumaa, jossa pelataan rajattu määrä __otteluita__ __joukkueiden__ välillä. __Joukkue__ koostuu useammasta __pelaajasta__ ja __toimihenkilöistä__. Turnauksessa on käytössä useampi __kenttä__, jolloin otteluita voidaan pelata __samanaikaisesti__. Ottelussa kirjataan __maalit__ ja __rangaistukset__._
 
 | Ehdokas  | Analyysi  |
-|:-:|:-:|
+| -------- | --------- |
 | Turnaus | Sisältää useita otteluita, tietokanta kokonaisuudessaan |
 | Ottelu | Kahden joukkueen välillä, voi tulla useampia maaleja ja rangaistuksia, pakollinen |
 | Joukkue | Otteluiden osanottajat, nimi, paikkakunta, seura |
