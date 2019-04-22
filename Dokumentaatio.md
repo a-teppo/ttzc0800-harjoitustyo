@@ -41,14 +41,14 @@ _Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. __Turnauksella__ 
 
 # Käyttöliitymän prototyyppi
 
-* Joukkueen valitseminen *
+### Joukkueen valitseminen
 ![](joukkueet.png "Joukkueet")
 
-* Joukkueen muokkaus *
+### Joukkueen muokkaus
 ![](joukkuelomake.png "Joukkueen muokkaus")
 
-* Henkilön tietojen muokkaus *
+### Henkilön tietojen muokkaus
 ![](henkilolomake.png "Henkilön muokkaus")
 
-* Ottelupöytäkirja *
+### Ottelupöytäkirja
 ![](ottelupoytakirja.png "Ottelupöytäkirja")
