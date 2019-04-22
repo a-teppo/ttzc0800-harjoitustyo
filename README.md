@@ -10,3 +10,5 @@ Tekijät:
 [Dokumentaatio](Dokumentaatio.md)
 
 [SQL-skriptit](./SQL/)
+
+[Loppuraportti](Loppuraportti.md)
