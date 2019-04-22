@@ -36,4 +36,4 @@ _Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. __Turnauksella__ 
 
 ## ER-kaavio
 
-![](ER-kaavio.png "ER-kaavio")
+![](ER_tietokanta.png "ER-kaavio")
