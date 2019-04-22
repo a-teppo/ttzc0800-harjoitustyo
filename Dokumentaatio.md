@@ -36,19 +36,19 @@ _Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. __Turnauksella__ 
 
 ## ER-kaavio
 
-![](ER_tietokanta.png "ER-kaavio")
+![](./Kuvat/ER_tietokanta.png "ER-kaavio")
 
 
 # Käyttöliitymän prototyyppi
 
 ### Joukkueen valitseminen
-![](joukkueet.png "Joukkueet")
+![](./Kuvat/joukkueet.png "Joukkueet")
 
 ### Joukkueen muokkaus
-![](joukkuelomake.png "Joukkueen muokkaus")
+![](./Kuvat/joukkuelomake.png "Joukkueen muokkaus")
 
 ### Henkilön tietojen muokkaus
-![](henkilolomake.png "Henkilön muokkaus")
+![](./Kuvat/henkilolomake.png "Henkilön muokkaus")
 
 ### Ottelupöytäkirja
-![](ottelupoytakirja.png "Ottelupöytäkirja")
+![](./Kuvat/ottelupoytakirja.png "Ottelupöytäkirja")
