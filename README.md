@@ -7,4 +7,5 @@ Tekijät:
 * Pauliina Heikkilä/M3203
 
 [Dokumentaatio](Dokumentaatio.md)
+
 [SQL-skriptit](./SQL/)
