@@ -1,3 +1,19 @@
+# Vaatimusmäärittely
+
+## 1. Johdanto
+
+Tavoitteena on tehdä tietokanta, jossa voidaan hallita salibandysarjoja, niissä pelaavia joukkueita, otteluita, tuloksia ja muuta statistiikkaa.
+
+## 2. Toiminnot
+### a. Pakolliset toiminnot
+P1. Joukkuetietojen ylläpito (nimi, paikkakunta)
+P2. Otteluohjelman ylläpito (pelaavat joukkueet, pvm, aika, paikka, sarja/lohko)
+P3. Otteludatan ylläpito (tulos, maalit, rangaistukset, pisteet)
+### b. Tärkeät toiminnot
+T1. Pelaajatietojen ylläpito (nimi, pelinumero, synt.aika, joukkue)
+T2. Pistepörssi, jäähypörssi yms. statistiikkaa
+
+
 # Käsiteanalyysi
 
 Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. Turnauksella tarkoitetaan tapahtumaa, jossa pelataan rajattu määrä otteluita joukkueiden välillä. Joukkue koostuu useammasta pelaajasta ja toimihenkilöistä. Turnauksessa on käytössä useampi kenttä, jolloin otteluita voidaan pelata samanaikaisesti. Ottelussa kirjataan maalit ja rangaistukset.
@@ -17,3 +33,7 @@ _Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. __Turnauksella__ 
 | Samanaikaisesti | Pelin aloitusaika |
 | Maali | Ottelussa voi tulla useampi, tekoaika, tekijä, syöttäjä, erikoistilanne, useamman tehnyt voittaa |
 | Rangaistus | Ottelussa voi tulla useampi, aika, kärsijä, kesto, syy |
+
+## ER-kaavio
+
+![](ER-kaavio.png "ER-kaavio")
