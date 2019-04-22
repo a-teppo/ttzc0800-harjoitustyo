@@ -7,7 +7,10 @@ CREATE TABLE Joukkue (
 	)ENGINE = InnoDB;
     
 INSERT INTO Joukkue (Nimi, Paikkakunta, Seura, LogoURL) VALUES
-('Hpk-85','Hameenlinna', 'HPK', '');
+('Hpk-85','Hameenlinna', 'HPK', ''),
+('Huru-ukot', 'Siuntio','HK-76', ''),
+('SB Kynä','Laitila','SB Kynä', ''),
+('Kustavin loraus','Kustavi', 'KPK', '');
 
     
 CREATE TABLE Henkilot (
@@ -15,16 +18,25 @@ CREATE TABLE Henkilot (
 	Sukunimi VARCHAR(50),
 	Etunimi VARCHAR(50),
 	Pelinumero TINYINT,
-	Pelipaikka CHAR(2),
+	Pelipaikka CHAR(2) CHECK (Pelipaikka IN ('MV','PL','HY')),
 	Syntymavuosi SMALLINT,
 	Rooli VARCHAR(10),
     JoukkueID smallint,
+    CONSTRAINT uc_NumeroJoukkue UNIQUE (Pelinumero, JoukkueID),
 	CONSTRAINT fk_Joukkue FOREIGN KEY (JoukkueID)
 		REFERENCES Joukkue (JoukkueID)
 	)ENGINE = InnoDB;
 
-    INSERT INTO Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)VALUES
-('Teppo','Antti', 22, 'VP', 2007, 'pelaaja', 1 );
+INSERT INTO Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)VALUES
+('Teppo','Antti', 22, 'VP', 2007, 'pelaaja', 1 ),
+('Virtanen','Jasse', 3, 'MV', 2002, 'pelaaja', 1 ),
+('Peltonen','Ville', 16, 'PL', 1998, 'pelaaja', 2 ),
+('Kuikka','Pasi', 9, 'HY', 2001, 'pelaaja', 2 ),
+('Rantanen','Lasse', 22, 'PL', 2004, 'pelaaja', 3 ),
+('Hepuli','Hanna', 12, 'HY', 1995, 'pelaaja', 3 ),
+('Terävä','Pauliina', 8, 'HY', 1989, 'pelaaja', 4 ),
+('Tohelo','Teppo', null, null, 1984, 'valmentaja', 1 ),
+('Tavis','Tiina', 23, 'MV', 2001, 'pelaaja', 4 );
 
 CREATE TABLE Ottelu (
 	OtteluID SMALLINT PRIMARY KEY auto_increment,
@@ -40,8 +52,13 @@ CREATE TABLE Ottelu (
 		REFERENCES Joukkue (JoukkueID)
 	)ENGINE = InnoDB;
 
-insert into Ottelu (Aika, Paikka) values
-('2019-01-01 14:14:20' , 'Porvoo');
+insert into Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue) values
+('2019-05-14 14:00:00' , 'Kenttä 1', 1, 2),
+('2019-05-14 14:00:00' , 'Kenttä 2', 3, 4),
+('2019-05-14 16:00:00' , 'Kenttä 1', 1, 3),
+('2019-05-14 16:00:00' , 'Kenttä 2', 2, 4),
+('2019-05-14 18:00:00' , 'Kenttä 1', 2, 3),
+('2019-05-14 18:00:00' , 'Kenttä 2', 4, 1);
 
 CREATE TABLE Maali (
 	MaaliID SMALLINT PRIMARY KEY auto_increment,
@@ -59,7 +76,15 @@ CREATE TABLE Maali (
 	)ENGINE = InnoDB;
     
 insert into Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Ottelu) values
-('2019-01-02 14:14:20', 'YV', 1, 1, 1);
+('2019-05-14 14:14:20', 'YV', 2, 1, 1),
+('2019-05-14 14:24:03', null, 4, 3, 1),
+('2019-05-14 14:31:10', null, 1, 2, 1),
+('2019-05-14 14:15:30', 'AV', 5, 6, 2),
+('2019-05-14 14:34:01', null, 6, 5, 2),
+('2019-05-14 14:40:12', null, 6, null, 2),
+('2019-05-14 16:05:30', null, 1, null, 3),
+('2019-05-14 16:34:01', null, 1, null, 3),
+('2019-05-14 16:40:12', 'TM', 1, 2, 3);
 
 CREATE TABLE Rangaistus (
 	RangaistusID SMALLINT PRIMARY KEY auto_increment,
@@ -75,4 +100,5 @@ CREATE TABLE Rangaistus (
 	)ENGINE = InnoDB;
     
 insert into Rangaistus (Aika, Kesto, Syy, Henkilo, Ottelu) values
-('2019-01-03 14:14:20', 5, 'Poikkari', 1, 1);
+('2019-05-14 14:35:10', 2, 'Kampitus', 1, 1),
+('2019-05-14 16:30:10', 5, 'Väkivaltaisuus', 6, 3);
