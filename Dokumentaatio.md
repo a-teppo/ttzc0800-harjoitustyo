@@ -1,10 +1,10 @@
 # Vaatimusmäärittely
 
-## 1. Johdanto
+## Johdanto
 
 Tavoitteena on tehdä tietokanta, jossa voidaan hallita salibandysarjoja, niissä pelaavia joukkueita, otteluita, tuloksia ja muuta statistiikkaa.
 
-## 2. Toiminnot
+## Toiminnot
 ### a. Pakolliset toiminnot
 P1. Joukkuetietojen ylläpito (nimi, paikkakunta)
 P2. Otteluohjelman ylläpito (pelaavat joukkueet, pvm, aika, paikka, sarja/lohko)
@@ -37,3 +37,18 @@ _Tarkasteltavana ilmiönä on salibandyturnauksen tilastointi. __Turnauksella__ 
 ## ER-kaavio
 
 ![](ER_tietokanta.png "ER-kaavio")
+
+
+# Käyttöliitymän prototyyppi
+
+* Joukkueen valitseminen *
+![](joukkueet.png "Joukkueet")
+
+* Joukkueen muokkaus *
+![](joukkuelomake.png "Joukkueen muokkaus")
+
+* Henkilön tietojen muokkaus *
+![](henkilolomake.png "Henkilön muokkaus")
+
+* Ottelupöytäkirja *
+![](ottelupoytakirja.png "Ottelupöytäkirja")
