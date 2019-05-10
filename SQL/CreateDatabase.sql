@@ -25,6 +25,7 @@ CREATE TABLE Henkilot (
     CONSTRAINT uc_NumeroJoukkue UNIQUE (Pelinumero, JoukkueID),
 	CONSTRAINT fk_Joukkue FOREIGN KEY (JoukkueID)
 		REFERENCES Joukkue (JoukkueID)
+		ON DELETE CASCADE
 	)ENGINE = InnoDB;
 
 INSERT INTO Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)VALUES
@@ -47,9 +48,11 @@ CREATE TABLE Ottelu (
 	CONSTRAINT uc_AikaPaikka UNIQUE (Aika, Paikka),
 	CONSTRAINT chk_KotiVieras CHECK (Kotijoukkue <> Vierasjoukkue),
 	CONSTRAINT fk_Kotijoukkue FOREIGN KEY (Kotijoukkue)
-		REFERENCES Joukkue (JoukkueID),
+		REFERENCES Joukkue (JoukkueID)
+		ON DELETE RESTRICT,
 	CONSTRAINT fk_Vierasjoukkue FOREIGN KEY (Vierasjoukkue)
 		REFERENCES Joukkue (JoukkueID)
+		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
 
 insert into Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue) values
@@ -68,11 +71,14 @@ CREATE TABLE Maali (
     Syottaja smallint,
     Ottelu smallint,
 	CONSTRAINT fk_Ottelu FOREIGN KEY (Ottelu)
-		REFERENCES Ottelu (OtteluID),
+		REFERENCES Ottelu (OtteluID)
+		ON DELETE RESTRICT,
 	CONSTRAINT fk_Maalintekija FOREIGN KEY (Maalintekija)
-		REFERENCES Henkilot(HenkiloID),
+		REFERENCES Henkilot(HenkiloID)
+		ON DELETE RESTRICT,
 	CONSTRAINT fk_Syottaja FOREIGN KEY (Syottaja)
 		REFERENCES Henkilot(HenkiloID)
+		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
     
 INSERT INTO Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Ottelu) VALUES
@@ -94,9 +100,11 @@ CREATE TABLE Rangaistus (
     Henkilo smallint,
     Ottelu smallint,
 	CONSTRAINT fk_Henkilo FOREIGN KEY (Henkilo)
-		REFERENCES Henkilot(HenkiloID),
+		REFERENCES Henkilot(HenkiloID)
+		ON DELETE RESTRICT,
 	CONSTRAINT fk_Ottelu2 FOREIGN KEY (Ottelu)
 		REFERENCES Ottelu (OtteluID)
+		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
     
 insert into Rangaistus (Aika, Kesto, Syy, Henkilo, Ottelu) values
