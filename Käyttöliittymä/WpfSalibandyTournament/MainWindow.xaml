@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfSalibandyTournament.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSalibandyTournament"
+        mc:Ignorable="d"
+        Title="Aloitussivu" Height="350" Width="300">
+    <Grid Background="LightBlue">
+        <StackPanel Height="170" VerticalAlignment="Top" Margin="20">
+            <Button x:Name="btnMaketurnaument" Content="Turnaus" Height="30" Width="100" Margin="5" />
+            <Button x:Name="btnPlayers" Content="Pelaaja" Height="30" Width="100" Margin="5" Click="BtnPlayers_Click"/>
+            <Button x:Name="btnTeams" Content="Joukkue" Height="30" Width="100" Margin="5" />
+            <Button x:Name="btnEndprogram" Content="Lopeta" Height="30" Width="100" Margin="5" Background="Red" Foreground="White" />
+        </StackPanel>
+        <StackPanel Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="White">
+            <Image Source="/images/salibandy_tytto.jpg"/>
+        </StackPanel>
+        <StackPanel Height="110" Width="190" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="White">
+            <Image Height="100" VerticalAlignment="Stretch" Source="/images/salibandy_logo2.jpg"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

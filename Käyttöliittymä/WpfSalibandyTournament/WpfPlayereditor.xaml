@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfSalibandyTournament.WpfPlayereditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSalibandyTournament"
+        mc:Ignorable="d"
+    Title="Pelaaja: Lisää/muokkaa" Height="350" Width="300">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Background="LightBlue" Width="100">
+            <TextBlock Text="Sukunimi:" Height="15" Margin="5 15 5 5"/>
+            <TextBlock Text="Etunimi:" Height="15" Margin="5"/>
+            <TextBlock Text="Pelinumero:" Height="15" Margin="5"/>
+            <TextBlock Text="Pelipaikka:" Height="15" Margin="5"/>
+            <TextBlock Text="Syntymävuosi:" Height="15" Margin="5"/>
+            <TextBlock Text="Rooli:" Height="15" Margin="5"/>
+            <TextBlock Text="Joukkue:" Height="15" Margin="5"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Background="LightBlue" Width="200" >
+            <TextBox x:Name="txtLastname" Height="15" Margin="5 15 5 5"/>
+            <TextBox x:Name="txtFirstname" Height="15" Margin="5"/>
+            <TextBox x:Name="txtPlayernumber" Height="15" Margin="5"/>
+            <TextBox x:Name="txtPostion" Height="15" Margin="5"/>
+            <TextBox x:Name="txtBirthday" Height="15" Margin="5"/>
+            <TextBox x:Name="txtRole" Height="15" Margin="5"/>
+            <ListBox x:Name="lstTeams" Height="15" Margin="5" Background="LightBlue"/>
+            <Button x:Name="btnSave" Content="Tallenna" Height="20" Width="100" Margin="0 50 0 5"/>
+            <Button x:Name="btnCancel" Content="Peruuta" Height="20" Width="100" Margin="0 5 0 5"/>
+        </StackPanel>
+    </Grid>
+</Window>
