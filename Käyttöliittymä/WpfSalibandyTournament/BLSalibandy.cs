@@ -26,6 +26,24 @@ namespace WpfSalibandyTournament
             }
             return players;
         }
+
+        public static List<Team> GetTeamsFromDB()
+        {
+            List<Team> teams = new List<Team>();
+            DataTable dt = GetTeamsDB();
+            foreach (DataRow item in dt.Rows)
+            {
+                Team team = new Team();
+                team.JoukkueId = int.Parse(item[0].ToString());
+                team.Nimi = item[1].ToString();
+                team.Paikkakunta = item[2].ToString();
+                team.Seura = item[3].ToString();
+
+                teams.Add(team);
+            }
+
+            return teams;
+        }
     }
 
     public class Player

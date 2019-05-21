@@ -40,12 +40,14 @@ namespace WpfSalibandyTournament
 
         private void BtnMTeams_Click(object sender, RoutedEventArgs e)
         {
-           
+            WpfTeams joukkueet = new WpfTeams();
+            joukkueet.Show();
         }
 
         private void BtnEndprogram_Click(object sender, RoutedEventArgs e)
         {
-            
+            Close();
         }
+
     }
 }

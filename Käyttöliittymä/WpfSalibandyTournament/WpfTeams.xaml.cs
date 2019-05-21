@@ -19,12 +19,18 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfTeams : Window
     {
-        private List<Player> players = DBSalibandytournament.GetPlayersFromDB();
+        private List<Team> teams = DBSalibandytournament.GetTeamsFromDB();
 
         public WpfTeams()
         {
-            //InitializeComponent();
+            InitializeComponent();
+            dgTeams.ItemsSource = teams;
 
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 

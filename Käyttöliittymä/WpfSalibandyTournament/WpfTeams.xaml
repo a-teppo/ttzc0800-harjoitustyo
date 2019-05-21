@@ -9,15 +9,14 @@
     <Grid Background="LightBlue">
         <StackPanel>
             <StackPanel>
-                <Button x:Name="btnGetTeam"/>
+                <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="500 5 0 0" Click="BtnClose_Click"/>
             </StackPanel>
-            <DataGrid x:Name="dgPlayers">
+            <DataGrid x:Name="dgTeams" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="HenkiloId" Binding="{Binding Path=HenkiloId}"/>
-                    <DataGridTextColumn Header="Sukunimi" Binding="{Binding Path=Sukunimi}"/>
-                    <DataGridTextColumn Header="Etunimi" Binding="{Binding Path=Etunimi}"/>
-                    <DataGridTextColumn Header="Syntymävuosi" Binding="{Binding Path=Syntymävuosi}"/>
-                    <DataGridTextColumn Header="Nimi" Binding="{Binding Path=Nimi}"/>
+                    <DataGridTextColumn Header="JoukkueId" Binding="{Binding Path=JoukkueId}"/>
+                    <DataGridTextColumn Header="JoukkueenNimi" Binding="{Binding Path=Nimi}"/>
+                    <DataGridTextColumn Header="Paikkakunta" Binding="{Binding Path=Paikkakunta}"/>
+                    <DataGridTextColumn Header="Seura" Binding="{Binding Path=Seura}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
