@@ -5,18 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Title="WpfGamestatistics" Height="450" Width="800">
+        Title="Ottelupöytäkirja" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <TextBox x:Name="txtFilename" HorizontalAlignment="Left" Height="35" Margin="10,10,0,0" TextWrapping="Wrap" Text="F:\kni_opiskelu\kurssit\TTOS0300_KL_ohjelmointi\CoffeeMaker.mp4" VerticalAlignment="Top" Width="333" RenderTransformOrigin="0.455,1.877"/>
-        <TextBlock x:Name="btnBrowse" Text="Browse" HorizontalAlignment="Left" Margin="348,10,0,0" VerticalAlignment="Top" Width="100" Height="35" Background="#FF7CBAE4" />
-        <TextBlock x:Name="btnPlay" Text="Play" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="100" Height="30" Background="#FF40D329"/>
-        <Button x:Name="btnPause" Content="Pause" Margin="120,63,0,0" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="230,63,0,0" VerticalAlignment="Top" Width="100" Height="30" />
-        <MediaElement x:Name="medElement" HorizontalAlignment="Left" Height="302" Margin="10,107,0,0" VerticalAlignment="Top" Width="440" LoadedBehavior="Manual"/>
-
+        <StackPanel Background="LightBlue" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" MinHeight="200">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="OtteluNro - " HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="14"/>
+                        <TextBlock Text="12" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
+                        <Button Content="Käynnistä" Width="65" Margin="0 5" Click="StartTimer"/>
+                        <Button Content="Pysäytä" Width="65" Margin="5 5" Click="StopTimer"/>
+                        <Label x:Name="lblTimer" Width="65" Margin="0 5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Koti" HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Joukkue1" Margin="45 5 0 0"  FontSize="16"/>
+                    </StackPanel>
+                        <DataGrid AutoGenerateColumns="False" Name="dgHomeGoals" CanUserAddRows="True" ItemsSource="{Binding}" Margin="10">
+                        <DataGrid.Columns>
+                        <DataGridTextColumn Header="Maali" IsReadOnly="True" Binding="{Binding Path=Maalinro}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Aika" IsReadOnly="True"  Binding="{Binding Path=Aika}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tekijä" IsReadOnly="True"  Binding="{Binding Path=Maalintekija}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Syöttäjä" IsReadOnly="True"  Binding="{Binding Path=Syottaja}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Erikoistilanne" IsReadOnly="True"  Binding="{Binding Path=Erikoistilanne}" Width="80"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                    <Button Content="Lisää" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="70" Margin="10 0" Click="AddHomeGoal" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" MinHeight="200">
+                <StackPanel>
+                    <DataGrid AutoGenerateColumns="False" Name="dgHomePenalties" CanUserAddRows="True" ItemsSource="{Binding}" Margin="10">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Rangaistus" IsReadOnly="True" Binding="{Binding Path=Rangaistusnro}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Aika" IsReadOnly="True"  Binding="{Binding Path=Aika}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kärsijä" IsReadOnly="True"  Binding="{Binding Path=Karsija}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kesto" IsReadOnly="True"  Binding="{Binding Path=Kesto}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Syy" IsReadOnly="True"  Binding="{Binding Path=Syy}" Width="80"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Lisää" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="70" Margin="10 0" Click="AddHomePenalty" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

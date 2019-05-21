@@ -30,5 +30,11 @@ namespace WpfSalibandyTournament
         {
             Close();
         }
+
+        private void BtnNew_Click(object sender, RoutedEventArgs e)
+        {
+            WpfGamestatistics stats = new WpfGamestatistics();
+            stats.Show();
+        }
     }
 }
