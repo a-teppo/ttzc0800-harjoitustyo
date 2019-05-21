@@ -26,28 +26,24 @@ namespace WpfSalibandyTournament
         {
             InitializeComponent();
         }
-
-        private void BtnMaketurnaument_Click(object sender, RoutedEventArgs e)
+        private void BtnGames_Click(object sender, RoutedEventArgs e)
         {
-            
+            WpfGames games = new WpfGames();
+            games.Show();
         }
-
         private void BtnPlayers_Click(object sender, RoutedEventArgs e)
         {
-            WpfPlayers pellaajat = new WpfPlayers();
-            pellaajat.Show();
+            WpfPlayers players = new WpfPlayers();
+            players.Show();
         }
-
-        private void BtnMTeams_Click(object sender, RoutedEventArgs e)
+        private void BtnTeams_Click(object sender, RoutedEventArgs e)
         {
             WpfTeams joukkueet = new WpfTeams();
             joukkueet.Show();
         }
-
         private void BtnEndprogram_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
     }
 }

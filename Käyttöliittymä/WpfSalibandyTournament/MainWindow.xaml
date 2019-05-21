@@ -8,9 +8,9 @@
         Title="Aloitussivu" Height="350" Width="300">
     <Grid Background="LightBlue">
         <StackPanel Height="170" VerticalAlignment="Top" Margin="20">
-            <Button x:Name="btnMaketurnaument" Content="Turnaus" Height="30" Width="100" Margin="5" />
+            <Button x:Name="btnGames" Content="Ottelut" Height="30" Width="100" Margin="5" Click="BtnGames_Click"/>
             <Button x:Name="btnPlayers" Content="Pelaaja" Height="30" Width="100" Margin="5" Click="BtnPlayers_Click"/>
-            <Button x:Name="btnTeams" Content="Joukkue" Height="30" Width="100" Margin="5" Click="BtnMTeams_Click"/>
+            <Button x:Name="btnTeams" Content="Joukkue" Height="30" Width="100" Margin="5" Click="BtnTeams_Click"/>
             <Button x:Name="btnEndprogram" Content="Lopeta" Height="30" Width="100" Margin="5" Background="Red" Foreground="White" Click="BtnEndprogram_Click"/>
         </StackPanel>
         <StackPanel Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="White">
@@ -18,7 +18,6 @@
         </StackPanel>
         <StackPanel Height="110" Width="190" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="White">
             <Image Height="100" VerticalAlignment="Stretch" Source="/images/salibandy_logo2.jpg"/>
-
         </StackPanel>
     </Grid>
 </Window>

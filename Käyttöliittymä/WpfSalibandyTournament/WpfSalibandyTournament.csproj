@@ -74,6 +74,9 @@
     </ApplicationDefinition>
     <Compile Include="BLSalibandy.cs" />
     <Compile Include="DBSalibandytournament.cs" />
+    <Compile Include="WpfGames.xaml.cs">
+      <DependentUpon>WpfGames.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfGamestatistics.xaml.cs">
       <DependentUpon>WpfGamestatistics.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WpfGames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WpfGamestatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

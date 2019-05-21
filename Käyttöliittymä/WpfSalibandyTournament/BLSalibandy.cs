@@ -26,7 +26,6 @@ namespace WpfSalibandyTournament
             }
             return players;
         }
-
         public static List<Team> GetTeamsFromDB()
         {
             List<Team> teams = new List<Team>();
@@ -44,8 +43,29 @@ namespace WpfSalibandyTournament
 
             return teams;
         }
+        public static List<Game> GetGamesFromDB()
+        {
+            List<Game> games = new List<Game>();
+            DataTable dt = GetViewDB("Ottelut");
+            foreach (DataRow item in dt.Rows)
+            {
+                Game game = new Game()
+                {
+                    OtteluId = int.Parse(item[0].ToString()),
+                    Aika = item[1].ToString(),
+                    Paikka = item[2].ToString(),
+                    KotiId = int.Parse(item[3].ToString()),
+                    KotiNimi = item[4].ToString(),
+                    VierasId = int.Parse(item[5].ToString()),
+                    VierasNimi = item[6].ToString(),
+                    KotiMaalit = int.Parse(item[7].ToString()),
+                    VierasMaalit = int.Parse(item[8].ToString())
+                };
+                games.Add(game);
+            }
+            return games;
+        }
     }
-
     public class Player
     {
         public int HenkiloId { get; set; }
@@ -54,7 +74,6 @@ namespace WpfSalibandyTournament
         public int Syntymavuosi { get; set; }
         public string Nimi { get; set; }
     }
-
     public class Team
     {
         public int JoukkueId { get; set; }
@@ -62,6 +81,17 @@ namespace WpfSalibandyTournament
         public string Paikkakunta { get; set; }
         public string Seura { get; set; }
         public string LogoURL { get; set; }
-
+    }
+    public class Game
+    {
+        public int OtteluId { get; set; }
+        public string Aika { get; set; }
+        public string Paikka { get; set; }
+        public int KotiId { get; set; }
+        public string KotiNimi { get; set; }
+        public int VierasId { get; set; }
+        public string VierasNimi { get; set; }
+        public int KotiMaalit { get; set; }
+        public int VierasMaalit { get; set; }
     }
 }

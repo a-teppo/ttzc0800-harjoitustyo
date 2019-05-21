@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfSalibandyTournament.WpfGames"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSalibandyTournament"
+        mc:Ignorable="d"
+        Title="Ottelut" MinHeight="400" Width="550" Topmost="True" SizeToContent="WidthAndHeight">
+    <Grid Background="LightBlue">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="btnNew" Content="Uusi ottelu" Width="75" Margin="5 2" />
+                <Button x:Name="btnClose" Content="Sulje" Width="75" Margin="5 2" Click="BtnClose_Click"/>
+            </StackPanel>
+            <DataGrid x:Name="dgGames" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="OtteluNro" Binding="{Binding Path=OtteluId}"/>
+                    <DataGridTextColumn Header="Aika" Binding="{Binding Path=Aika}"/>
+                    <DataGridTextColumn Header="Paikka" Binding="{Binding Path=Paikka}"/>
+                    <DataGridTextColumn Header="Kotijoukkue" Binding="{Binding Path=KotiNimi}"/>
+                    <DataGridTextColumn Header="Vierasjoukkue" Binding="{Binding Path=VierasNimi}"/>
+                    <DataGridTextColumn Header="Maalit" Binding="{Binding Path=KotiMaalit}"/>
+                    <DataGridTextColumn Header="Maalit" Binding="{Binding Path=VierasMaalit}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button>Muokkaa</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
