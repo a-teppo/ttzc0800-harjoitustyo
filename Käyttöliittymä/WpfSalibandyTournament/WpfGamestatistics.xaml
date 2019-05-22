@@ -5,46 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Title="Ottelupöytäkirja" Height="450" Width="800">
+        Height="450" Width="800" WindowStyle="None">
     <Grid>
         <StackPanel Background="LightBlue" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" MinHeight="200">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="OtteluNro - " HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="14"/>
-                        <TextBlock Text="12" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
-                        <Button Content="Käynnistä" Width="65" Margin="0 5" Click="StartTimer"/>
-                        <Button Content="Pysäytä" Width="65" Margin="5 5" Click="StopTimer"/>
-                        <Label x:Name="lblTimer" Width="65" Margin="0 5"/>
+                    <TextBlock Text="Ottelupöytäkirja" Width="185" FontWeight="Bold" FontSize="16" Margin="5 5 0 0" HorizontalAlignment="Left"/>
+                        <StackPanel HorizontalAlignment="Right" >
+                            <StackPanel Orientation="Horizontal" Height="25">
+                                <Label Content="Erien määrä" Width="100" />
+                                <TextBox x:Name="txtNumberOfPeriods" Text="3" HorizontalContentAlignment="Center" Width="30" Height="20"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="25">
+                                <Label Content="Erän pituus (min)" Width="100"/>
+                                <TextBox x:Name="txtPeriodLenght" Text="15" HorizontalContentAlignment="Center" Width="30" Height="20"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="OtteluNro - " HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="12" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel VerticalAlignment="Center">
+                                <Button Content="Käynnistä" Width="65" Margin="0" Click="StartTimer"/>
+                                <Button Content="Pysäytä" Width="65" Margin="5" Click="StopTimer"/>
+                            </StackPanel>
+                            <Label x:Name="lblTimer" Content="00:00" Width="65" Height="30" Margin="0 5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF184151" Background="#FFE6F3F7" FontSize="14"/>
+                            <Label x:Name="lblHelper" Content="00:00" Width="65" Height="30"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Koti" HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="16"/>
                         <TextBlock Text="Joukkue1" Margin="45 5 0 0"  FontSize="16"/>
                     </StackPanel>
-                        <DataGrid AutoGenerateColumns="False" Name="dgHomeGoals" CanUserAddRows="True" ItemsSource="{Binding}" Margin="10">
+                    <DataGrid AutoGenerateColumns="False" Name="dgHomeGoals" CanUserAddRows="False" ItemsSource="{Binding}" Margin="10">
                         <DataGrid.Columns>
-                        <DataGridTextColumn Header="Maali" IsReadOnly="True" Binding="{Binding Path=Maalinro}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Maali" IsReadOnly="True" Binding="{Binding Path=Maalinro}" Width="70"></DataGridTextColumn>
                             <DataGridTextColumn Header="Aika" IsReadOnly="True"  Binding="{Binding Path=Aika}" Width="70"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Tekijä" IsReadOnly="True"  Binding="{Binding Path=Maalintekija}" Width="70"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Syöttäjä" IsReadOnly="True"  Binding="{Binding Path=Syottaja}" Width="70"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Erikoistilanne" IsReadOnly="True"  Binding="{Binding Path=Erikoistilanne}" Width="80"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                    <Button Content="Lisää" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="70" Margin="10 0" Click="AddHomeGoal" />
+                            <DataGridTextColumn Header="Tekijä" IsReadOnly="False"  Binding="{Binding Path=Maalintekija, Mode=TwoWay}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Syöttäjä" IsReadOnly="False"  Binding="{Binding Path=Syottaja, Mode=TwoWay}" Width="70"></DataGridTextColumn>
+                            <DataGridComboBoxColumn x:Name="cmbErikoistilanne" Header="Erikoistilanne" IsReadOnly="False"  SelectedValueBinding="{Binding Erikoistilanne, Mode=TwoWay}" DisplayMemberPath="{Binding Erikoistilanne}" Width="80"></DataGridComboBoxColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="AddHomeGoal" Content="Lisää" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="70" Margin="10 0" Click="AddGoal" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" MinHeight="200">
                 <StackPanel>
-                    <DataGrid AutoGenerateColumns="False" Name="dgHomePenalties" CanUserAddRows="True" ItemsSource="{Binding}" Margin="10">
+                    <DataGrid AutoGenerateColumns="False" Name="dgHomePenalties" CanUserAddRows="False" ItemsSource="{Binding}" Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Rangaistus" IsReadOnly="True" Binding="{Binding Path=Rangaistusnro}" Width="70"></DataGridTextColumn>
                             <DataGridTextColumn Header="Aika" IsReadOnly="True"  Binding="{Binding Path=Aika}" Width="70"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Kärsijä" IsReadOnly="True"  Binding="{Binding Path=Karsija}" Width="70"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Kesto" IsReadOnly="True"  Binding="{Binding Path=Kesto}" Width="70"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Syy" IsReadOnly="True"  Binding="{Binding Path=Syy}" Width="80"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kärsijä" IsReadOnly="False"  Binding="{Binding Path=Karsija, Mode=TwoWay}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Kesto" IsReadOnly="False"  Binding="{Binding Path=Kesto, Mode=TwoWay}" Width="70"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Syy" IsReadOnly="False" Binding="{Binding Path=Syy, Mode=TwoWay}" Width="80"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Lisää" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="70" Margin="10 0" Click="AddHomePenalty" />
+                    <Button Name="AddHomePenalty" Content="Lisää" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="70" Margin="10 0" Click="AddPenalty" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

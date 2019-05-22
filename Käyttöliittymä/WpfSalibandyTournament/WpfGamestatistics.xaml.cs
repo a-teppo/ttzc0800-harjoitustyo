@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,21 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfGamestatistics : Window
     {
-        private List<Goal> goals = new List<Goal>();
+        private List<Goal> homegoals = new List<Goal>();
         private int homegoalnumber = 0;
+        private List<Penalty> homepenalties = new List<Penalty>();
         private int homepenaltynumber = 0;
         DispatcherTimer dt = new DispatcherTimer();
         Stopwatch sw = new Stopwatch();
         private string currentTime = string.Empty;
+        private string periodTime = string.Empty;
+        public List<string> Erikoistilanteet { get; set; }
+        
         public WpfGamestatistics()
         {
             InitializeComponent();
+            dgHomeGoals.ItemsSource = homegoals;
+            FillCombo();
         }
         public class Goal
         {
@@ -63,6 +70,11 @@ namespace WpfSalibandyTournament
                 TimeSpan ts = sw.Elapsed;
                 currentTime = String.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
                 lblTimer.Content = currentTime;
+                foreach(var item in ListTime())
+                {
+                    if (item == currentTime)
+                        sw.Stop();
+                }
             }
         }
         private void StopTimer(object sender, RoutedEventArgs e)
@@ -72,19 +84,70 @@ namespace WpfSalibandyTournament
                 sw.Stop();
             }
         }
-        private void AddHomeGoal(object sender, RoutedEventArgs e)
+        private List<string> ListTime()
         {
-            homegoalnumber += 1;
-            var data = new Goal { Maalinro = homegoalnumber, Aika = currentTime };
-            dgHomeGoals.Items.Add(data);
+            string str = "";
+            int periods = int.Parse(txtNumberOfPeriods.Text);
+            double periodlenght = double.Parse(txtPeriodLenght.Text);
+            List<string> timelist = new List<string>();
+            for(int i = 1; i <= periods; i++)
+            { 
+                TimeSpan t = TimeSpan.FromMinutes(i * periodlenght);
+                str = String.Format("{0:00}:{1:00}", t.Minutes, t.Seconds);
+                timelist.Add(str);
+            }
+            lblHelper.Content = str;
+            return timelist;
+        }
+        private void AddGoal(object sender, RoutedEventArgs e)
+        {
+            Button b = e.Source as Button;
+            if (b.Name == "AddHomeGoal")
+            {
+                homegoalnumber += 1;
+                Goal g = new Goal()
+                {
+                    Maalinro = homegoalnumber,
+                    Aika = currentTime
+                };
+                homegoals.Add(g);
+                dgHomeGoals.ItemsSource = null;
+                dgHomeGoals.ItemsSource = homegoals;
+            }
+            /*else if (b.Name == "AddAwayGoal")
+            {
+                awaygoalnumber += 1;
+                Goal g = new Goal()
+                {
+                    Maalinro = awaygoalnumber,
+                    Aika = currentTime
+                };
+                awaygoals.Add(g);
+                dgAwayGoals.ItemsSource = null;
+                dgAwayGoals.ItemsSource = awaygoals;
+            }*/
         }
 
-        private void AddHomePenalty(object sender, RoutedEventArgs e)
+        private void AddPenalty(object sender, RoutedEventArgs e)
         {
-            homepenaltynumber += 1;
-            var data = new Penalty { Rangaistusnro = homepenaltynumber };
-            dgHomePenalties.Items.Add(data);
+            Button b = e.Source as Button;
+            if (b.Name == "AddHomePenalty")
+            {
+                homepenaltynumber += 1;
+                Penalty p = new Penalty()
+                {
+                    Rangaistusnro = homepenaltynumber,
+                    Aika = currentTime
+                };
+                homepenalties.Add(p);
+                dgHomePenalties.ItemsSource = null;
+                dgHomePenalties.ItemsSource = homepenalties;
+            }
         }
-        
+        private void FillCombo()
+        {
+            Erikoistilanteet = new List<string>() { "YV", "AV", "RL" };
+            cmbErikoistilanne.ItemsSource = Erikoistilanteet;
+        }
     }
 }
