@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Title="Joukkueet" Height="450" Width="800">
+        Title="Joukkueet" Height="400" Width="500">
     <Grid Background="LightBlue">
         <StackPanel>
-            <StackPanel>
-                <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="500 5 0 0" Click="BtnClose_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="btnNewteam" Content="Uusi Joukkue" Width="80" Margin="5 2" Click="btnNewteam_Click"/>
+                <Button x:Name="btnClose" Content="Sulje" Width="80" Margin="5 2" Click="BtnClose_Click"/>
             </StackPanel>
             <DataGrid x:Name="dgTeams" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
                 <DataGrid.Columns>

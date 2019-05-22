@@ -24,8 +24,8 @@
             <TextBox x:Name="txtBirthday" Height="15" Margin="5"/>
             <TextBox x:Name="txtRole" Height="15" Margin="5"/>
             <ListBox x:Name="lstTeams" Height="15" Margin="5" Background="LightBlue"/>
-            <Button x:Name="btnSave" Content="Tallenna" Height="20" Width="100" Margin="0 50 0 5"/>
-            <Button x:Name="btnCancel" Content="Peruuta" Height="20" Width="100" Margin="0 5 0 5"/>
+            <Button x:Name="btnSavePerson" Content="Tallenna" Height="20" Width="100" Margin="0 50 0 5" Click="btnSavePerson_Click" />
+            <Button x:Name="btnCancel" Content="Peruuta" Height="20" Width="100" Margin="0 5 0 5" Click="BtnCancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>

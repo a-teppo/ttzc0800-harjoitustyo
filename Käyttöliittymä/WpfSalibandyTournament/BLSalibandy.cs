@@ -9,6 +9,7 @@ namespace WpfSalibandyTournament
 {
     public partial class DBSalibandytournament
     {
+        
         public static List<Player> GetPlayersFromDB()
         {
             List<Player> players = new List<Player>();

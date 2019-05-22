@@ -32,6 +32,12 @@ namespace WpfSalibandyTournament
         {
             Close();
         }
+
+        private void btnNewteam_Click(object sender, RoutedEventArgs e)
+        {
+            WpfTeameditor teameditor = new WpfTeameditor();
+            teameditor.Show();
+        }
     }
 
 }

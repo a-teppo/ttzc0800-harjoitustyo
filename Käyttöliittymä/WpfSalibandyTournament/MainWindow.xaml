@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Title="Aloitussivu" Height="350" Width="300">
+        Title="SALIBANDY TOURNAMENT" Height="350" Width="320" HorizontalAlignment="Center">
     <Grid Background="LightBlue">
         <StackPanel Height="170" VerticalAlignment="Top" Margin="20">
             <Button x:Name="btnGames" Content="Ottelut" Height="30" Width="100" Margin="5" Click="BtnGames_Click"/>
@@ -13,11 +13,19 @@
             <Button x:Name="btnTeams" Content="Joukkue" Height="30" Width="100" Margin="5" Click="BtnTeams_Click"/>
             <Button x:Name="btnEndprogram" Content="Lopeta" Height="30" Width="100" Margin="5" Background="Red" Foreground="White" Click="BtnEndprogram_Click"/>
         </StackPanel>
-        <StackPanel Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="White">
-            <Image Source="/images/salibandy_tytto.jpg"/>
+        <StackPanel Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Image Stretch="Fill">
+                <Image.Source>
+                    <BitmapImage UriSource="/images/salibandy_tytto1.jpg"/>
+                </Image.Source>
+            </Image>
         </StackPanel>
-        <StackPanel Height="110" Width="190" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="White">
-            <Image Height="100" VerticalAlignment="Stretch" Source="/images/salibandy_logo2.jpg"/>
+        <StackPanel Height="110" Width="190" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Image Stretch="Fill">
+                <Image.Source>
+                    <BitmapImage UriSource="/images/salibandy_logo1.jpg"/>
+                </Image.Source>
+            </Image>
         </StackPanel>
     </Grid>
 </Window>

@@ -20,12 +20,13 @@ namespace WpfSalibandyTournament
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
-    {
+    {       
         public MainWindow()
         {
-            InitializeComponent();
-        }
+            InitializeComponent();                        
+        }        
         private void BtnGames_Click(object sender, RoutedEventArgs e)
         {
             WpfGames games = new WpfGames();

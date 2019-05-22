@@ -23,5 +23,15 @@ namespace WpfSalibandyTournament
         {
             InitializeComponent();
         }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSavePerson_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

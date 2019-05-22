@@ -27,9 +27,15 @@ namespace WpfSalibandyTournament
             dgPlayers.ItemsSource = players;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnNewperson_Click(object sender, RoutedEventArgs e)
+        {
+            WpfPlayereditor playereditor = new WpfPlayereditor();
+            playereditor.Show();
         }
     }
 }
