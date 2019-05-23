@@ -37,5 +37,16 @@ namespace WpfSalibandyTournament
             playereditor.ShowDialog();
             Close();
         }
+
+        private void btnEditPerson_Click(object sender, RoutedEventArgs e)
+        {
+            Player selectedPlayer = (Player)dgPlayers.SelectedItem;
+            if(selectedPlayer != null)
+            {
+                WpfPlayereditor playereditor = new WpfPlayereditor(selectedPlayer);
+                playereditor.ShowDialog();
+            }
+            Close();
+        }
     }
 }

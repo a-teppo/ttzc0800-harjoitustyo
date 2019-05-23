@@ -12,7 +12,7 @@
                 <Button x:Name="btnNew" Content="Uusi ottelu" Width="75" Margin="5 2" Click="BtnNew_Click" />
                 <Button x:Name="btnClose" Content="Sulje" Width="75" Margin="5 2" Click="BtnClose_Click"/>
             </StackPanel>
-            <DataGrid x:Name="dgGames" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
+            <DataGrid x:Name="dgGames" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="OtteluNro" Binding="{Binding Path=OtteluId}"/>
                     <DataGridTextColumn Header="Aika" Binding="{Binding Path=Aika}"/>

@@ -12,14 +12,21 @@
                 <Button x:Name="btnNewperson" Content="Uusi Henkilö" Width="80" Margin="5 2" Click="btnNewperson_Click"/>
                 <Button x:Name="btnClose" Content="Sulje" Width="80" Margin="5 2" Click="btnClose_Click"/>
             </StackPanel>
-                    <DataGrid x:Name="dgPlayers" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left">
+                    <DataGrid x:Name="dgPlayers" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="300">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="HenkiloId" Binding="{Binding Path=HenkiloId}"/>
                             <DataGridTextColumn Header="Sukunimi" Binding="{Binding Path=Sukunimi}"/>
                             <DataGridTextColumn Header="Etunimi" Binding="{Binding Path=Etunimi}"/>
                             <DataGridTextColumn Header="Syntymävuosi" Binding="{Binding Path=Syntymavuosi}"/>
                             <DataGridTextColumn Header="Joukkue" Binding="{Binding Path=Nimi}"/>
-                        </DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnEditPerson" Content="Muokkaa" Click="btnEditPerson_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
                     </DataGrid>
             </StackPanel>
         </Grid>

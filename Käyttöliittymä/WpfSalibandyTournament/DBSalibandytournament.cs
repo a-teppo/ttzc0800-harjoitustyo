@@ -11,21 +11,21 @@ namespace WpfSalibandyTournament
 {
     public partial class DBSalibandytournament
     {
+        private static string palvelin = WpfSalibandyTournament.Properties.Settings.Default.server;
+        private static string tietokanta = WpfSalibandyTournament.Properties.Settings.Default.database;
+        private static string salasana = WpfSalibandyTournament.Properties.Settings.Default.password;
+        private static MySqlConnectionStringBuilder mySB = new MySqlConnectionStringBuilder()
+        {
+            Server = palvelin,
+            Database = tietokanta,
+            UserID = tietokanta,
+            Password = salasana
+        };
         public static DataTable GetViewDB(string viewname)
         {
             try
             {
                 DataTable dt = new DataTable();
-                string palvelin = WpfSalibandyTournament.Properties.Settings.Default.server;
-                string tietokanta = WpfSalibandyTournament.Properties.Settings.Default.database;
-                string salasana = WpfSalibandyTournament.Properties.Settings.Default.password;
-                MySqlConnectionStringBuilder mySB = new MySqlConnectionStringBuilder()
-                {
-                    Server = palvelin,
-                    Database = tietokanta,
-                    UserID = tietokanta,
-                    Password = salasana
-                };
                 using (MySqlConnection conn = new MySqlConnection(mySB.ConnectionString))
                 {
                     conn.Open();
@@ -44,16 +44,6 @@ namespace WpfSalibandyTournament
         {
             try
             {
-                string palvelin = WpfSalibandyTournament.Properties.Settings.Default.server;
-                string tietokanta = WpfSalibandyTournament.Properties.Settings.Default.database;
-                string salasana = WpfSalibandyTournament.Properties.Settings.Default.password;
-                MySqlConnectionStringBuilder mySB = new MySqlConnectionStringBuilder()
-                {
-                    Server = palvelin,
-                    Database = tietokanta,
-                    UserID = tietokanta,
-                    Password = salasana
-                };
                 using (MySqlConnection conn = new MySqlConnection(mySB.ConnectionString))
                 {
                     conn.Open();
@@ -66,6 +56,21 @@ namespace WpfSalibandyTournament
                 throw;
             }
         }
-
+        public static void UpdateDB(string tablestring, string valuestring, string wherestring)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(mySB.ConnectionString))
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand($"UPDATE {tablestring} SET {valuestring} WHERE {wherestring}", conn);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

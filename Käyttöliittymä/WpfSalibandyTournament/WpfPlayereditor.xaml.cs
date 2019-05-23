@@ -19,9 +19,19 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfPlayereditor : Window
     {
+        Player player;
         public WpfPlayereditor()
         {
             InitializeComponent();
+        }
+        public WpfPlayereditor(Player player)
+        {
+            InitializeComponent();
+            this.player = player;
+            txtID.Text = player.HenkiloId.ToString();
+            txtLastname.Text = player.Sukunimi;
+            txtFirstname.Text = player.Etunimi;
+            txtBirthday.Text = player.Syntymavuosi.ToString();
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -32,6 +42,7 @@ namespace WpfSalibandyTournament
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
         {
+            int PersonID = int.Parse(txtID.Text);
             string Lastname = $"'{txtLastname.Text}'";
             string Firstname = $"'{txtFirstname.Text}'";
             int Playernumber = int.Parse(txtPlayernumber.Text);
@@ -39,10 +50,21 @@ namespace WpfSalibandyTournament
             int Birthyear = int.Parse(txtBirthday.Text);
             string Role = $"'{txtRole.Text}'";
             int TeamID = 2;
-            string tablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
-            string valuestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
-            DBSalibandytournament.InsertIntoDB(tablestring, valuestring);
-            OpenPlayers();
+            
+            if (txtID.Text == null)
+            {
+                string inserttablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
+                string insertvaluestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
+                DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+            }
+            else
+            {
+                string updatetablestring = "Henkilot";
+                string updatevaluestring = $"Sukunimi = {Lastname}, Etunimi = {Firstname}, Pelinumero = {Playernumber}, Pelipaikka = {Position}, Syntymavuosi = {Birthyear}, Rooli = {Role}, JoukkueID = {TeamID}";
+                string updatewherestring = $"HenkiloID = {PersonID}";
+                DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
+                OpenPlayers();
+            }
             Close();
         }
         private void OpenPlayers()
