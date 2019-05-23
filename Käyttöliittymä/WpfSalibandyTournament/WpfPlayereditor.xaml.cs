@@ -26,6 +26,7 @@ namespace WpfSalibandyTournament
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
+            OpenPlayers();
             Close();
         }
 
@@ -37,11 +38,17 @@ namespace WpfSalibandyTournament
             string Position = $"'{txtPosition.Text}'";
             int Birthyear = int.Parse(txtBirthday.Text);
             string Role = $"'{txtRole.Text}'";
-            int TeamID = 1;
+            int TeamID = 2;
             string tablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
             string valuestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
             DBSalibandytournament.InsertIntoDB(tablestring, valuestring);
+            OpenPlayers();
             Close();
+        }
+        private void OpenPlayers()
+        {
+            WpfPlayers players = new WpfPlayers();
+            players.Show();
         }
     }
 }

@@ -25,7 +25,6 @@ namespace WpfSalibandyTournament
         {
             InitializeComponent();
             dgTeams.ItemsSource = teams;
-
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -36,7 +35,7 @@ namespace WpfSalibandyTournament
         private void btnNewteam_Click(object sender, RoutedEventArgs e)
         {
             WpfTeameditor teameditor = new WpfTeameditor();
-            teameditor.Show();
+            teameditor.ShowDialog();
         }
     }
 

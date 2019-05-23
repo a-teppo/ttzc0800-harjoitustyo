@@ -44,7 +44,7 @@ namespace WpfSalibandyTournament
         }
         private void BtnEndprogram_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
     }
 }
