@@ -20,7 +20,7 @@
             <TextBox x:Name="txtLastname" Height="15" Margin="5 15 5 5"/>
             <TextBox x:Name="txtFirstname" Height="15" Margin="5"/>
             <TextBox x:Name="txtPlayernumber" Height="15" Margin="5"/>
-            <TextBox x:Name="txtPostion" Height="15" Margin="5"/>
+            <TextBox x:Name="txtPosition" Height="15" Margin="5"/>
             <TextBox x:Name="txtBirthday" Height="15" Margin="5"/>
             <TextBox x:Name="txtRole" Height="15" Margin="5"/>
             <ListBox x:Name="lstTeams" Height="15" Margin="5" Background="LightBlue"/>

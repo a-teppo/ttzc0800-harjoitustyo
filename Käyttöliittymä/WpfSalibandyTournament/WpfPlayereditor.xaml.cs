@@ -31,6 +31,16 @@ namespace WpfSalibandyTournament
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
         {
+            string Lastname = $"'{txtLastname.Text}'";
+            string Firstname = $"'{txtFirstname.Text}'";
+            int Playernumber = int.Parse(txtPlayernumber.Text);
+            string Position = $"'{txtPosition.Text}'";
+            int Birthyear = int.Parse(txtBirthday.Text);
+            string Role = $"'{txtRole.Text}'";
+            int TeamID = 1;
+            string tablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
+            string valuestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
+            DBSalibandytournament.InsertIntoDB(tablestring, valuestring);
             Close();
         }
     }

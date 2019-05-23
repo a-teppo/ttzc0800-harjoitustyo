@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Height="450" Width="800" WindowStyle="None">
+        Height="450" Width="800" WindowStyle="SingleBorderWindow">
     <Grid>
         <StackPanel Background="LightBlue" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" MinHeight="200">

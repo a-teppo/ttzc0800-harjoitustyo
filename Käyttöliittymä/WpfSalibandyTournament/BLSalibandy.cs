@@ -13,7 +13,7 @@ namespace WpfSalibandyTournament
         public static List<Player> GetPlayersFromDB()
         {
             List<Player> players = new List<Player>();
-            DataTable dt = GetPlayersDB();
+            DataTable dt = GetViewDB("Pelaajat");
             foreach (DataRow item in dt.Rows)
             {
                 Player player = new Player();
@@ -30,7 +30,7 @@ namespace WpfSalibandyTournament
         public static List<Team> GetTeamsFromDB()
         {
             List<Team> teams = new List<Team>();
-            DataTable dt = GetTeamsDB();
+            DataTable dt = GetViewDB("Joukkueet");
             foreach (DataRow item in dt.Rows)
             {
                 Team team = new Team();

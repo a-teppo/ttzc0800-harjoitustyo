@@ -26,6 +26,10 @@ namespace WpfSalibandyTournament
             InitializeComponent();
             dgPlayers.ItemsSource = players;
         }
+        public void UpdateItemsSource()
+        {
+            dgPlayers.ItemsSource = players;
+        }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
