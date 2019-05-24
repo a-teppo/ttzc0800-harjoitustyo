@@ -67,11 +67,15 @@ CREATE TABLE Maali (
 	MaaliID SMALLINT PRIMARY KEY auto_increment,
 	Aika DATETIME,
 	Erikoistilanne CHAR(2) CHECK (Erikoistilanne IN (AV,YV,RL)),
-    Maalintekija smallint,
+    Maalintekija smallint NOT NULL,
     Syottaja smallint,
-    Ottelu smallint,
+    Joukkue smallint NOT NULL,
+    Ottelu smallint NOT NULL,
 	CONSTRAINT fk_Ottelu FOREIGN KEY (Ottelu)
 		REFERENCES Ottelu (OtteluID)
+		ON DELETE RESTRICT,
+    CONSTRAINT fk_Joukkue1 FOREIGN KEY (Joukkue)
+		REFERENCES Joukkue (JoukkueID)
 		ON DELETE RESTRICT,
 	CONSTRAINT fk_Maalintekija FOREIGN KEY (Maalintekija)
 		REFERENCES Henkilot(HenkiloID)
@@ -81,35 +85,39 @@ CREATE TABLE Maali (
 		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
     
-INSERT INTO Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Ottelu) VALUES
-('2019-05-14 14:14:20', 'YV', 2, 1, 1),
-('2019-05-14 14:24:03', null, 4, 3, 1),
-('2019-05-14 14:31:10', null, 1, 2, 1),
-('2019-05-14 14:15:30', 'AV', 5, 6, 2),
-('2019-05-14 14:34:01', null, 6, 5, 2),
-('2019-05-14 14:40:12', null, 6, null, 2),
-('2019-05-14 16:05:30', null, 1, null, 3),
-('2019-05-14 16:34:01', null, 1, null, 3),
-('2019-05-14 16:40:12', 'TM', 1, 2, 3);
+INSERT INTO Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu) VALUES
+('2019-05-14 14:14:20', 'YV', 2, 1, 1, 1),
+('2019-05-14 14:24:03', null, 4, 3, 2, 1),
+('2019-05-14 14:31:10', null, 1, 2, 1, 1),
+('2019-05-14 14:15:30', 'AV', 5, 6, 3, 2),
+('2019-05-14 14:34:01', null, 6, 5, 3, 2),
+('2019-05-14 14:40:12', null, 6, null, 3, 2),
+('2019-05-14 16:05:30', null, 1, null, 2, 3),
+('2019-05-14 16:34:01', null, 1, null, 2, 3),
+('2019-05-14 16:40:12', 'TM', 1, 2, 2, 3);
 
 CREATE TABLE Rangaistus (
 	RangaistusID SMALLINT PRIMARY KEY auto_increment,
-	Aika DATETIME,
-	Kesto TINYINT,
-	Syy VARCHAR(20),
-    Henkilo smallint,
-    Ottelu smallint,
+	Aika DATETIME NOT NULL,
+	Kesto TINYINT NOT NULL,
+	Syy VARCHAR(20) NOT NULL,
+    Henkilo smallint NOT NULL,
+    Joukkue smallint NOT NULL,
+    Ottelu smallint NOT NULL,
 	CONSTRAINT fk_Henkilo FOREIGN KEY (Henkilo)
 		REFERENCES Henkilot(HenkiloID)
+		ON DELETE RESTRICT,
+    CONSTRAINT fk_Joukkue2 FOREIGN KEY (Joukkue)
+		REFERENCES Joukkue (JoukkueID)
 		ON DELETE RESTRICT,
 	CONSTRAINT fk_Ottelu2 FOREIGN KEY (Ottelu)
 		REFERENCES Ottelu (OtteluID)
 		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
     
-insert into Rangaistus (Aika, Kesto, Syy, Henkilo, Ottelu) values
-('2019-05-14 14:35:10', 2, 'Kampitus', 1, 1),
-('2019-05-14 16:30:10', 5, 'Väkivaltaisuus', 6, 3);
+insert into Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu) values
+('2019-05-14 14:35:10', 2, 'Kampitus', 1, 1, 1),
+('2019-05-14 16:30:10', 5, 'Väkivaltaisuus', 6, 3, 3);
 
 CREATE VIEW Ottelumaalit AS
     SELECT 
@@ -149,12 +157,12 @@ CREATE VIEW Rangaistukset AS
     GROUP BY Henkilot.HenkiloID;
 
 CREATE VIEW Joukkueet AS SELECT JoukkueId, Nimi, Paikkakunta, Seura
-    FROM Joukkue
+    FROM Joukkue;
 
 CREATE VIEW Pelaajat AS SELECT HenkiloID, Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, Henkilot.JoukkueID, Joukkue.Nimi 
     FROM Henkilot
-    INNER JOIN Joukkue ON Joukkue.JoukkueID = Henkilot.JoukkueID
-
+    INNER JOIN Joukkue ON Joukkue.JoukkueID = Henkilot.JoukkueID;
+    
 CREATE VIEW Ottelut AS
     SELECT OtteluId, Aika, Paikka, Kotijoukkue, kj.Nimi AS Koti, Vierasjoukkue, vj.Nimi AS Vieras, IFNULL(o1.Maalit,0) As Kotimaalit, IFNULL(o2.Maalit,0) As Vierasmaalit
     FROM Ottelu
@@ -162,4 +170,4 @@ CREATE VIEW Ottelut AS
     JOIN Joukkue vj ON vj.JoukkueId = Ottelu.Vierasjoukkue
     LEFT JOIN Ottelumaalit o1 ON o1.Ottelu = Ottelu.OtteluID AND o1.Joukkue = Ottelu.Kotijoukkue
     LEFT JOIN Ottelumaalit o2 ON o2.Ottelu = Ottelu.OtteluID AND o2.Joukkue = Ottelu.Vierasjoukkue
-    ORDER BY Aika, Paikka
+    ORDER BY Aika, Paikka;
