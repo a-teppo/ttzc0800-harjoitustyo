@@ -119,15 +119,11 @@ insert into Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu) values
 ('2019-05-14 14:35:10', 2, 'Kampitus', 1, 1, 1),
 ('2019-05-14 16:30:10', 5, 'Väkivaltaisuus', 6, 3, 3);
 
-CREATE VIEW Ottelumaalit AS
+CREATE VIEW `Ottelumaalit` AS
     SELECT 
-        Maali.Ottelu AS Ottelu,
-        COUNT(0) AS Maalit,
-        Henkilot.JoukkueID AS Joukkue
-    FROM
-        (Maali
-        JOIN Henkilot ON ((Henkilot.HenkiloID = Maali.Maalintekija)))
-    GROUP BY Maali.Ottelu , Henkilot.JoukkueID;
+        Ottelu, COUNT(0) AS Maalit, Joukkue
+    FROM Maali
+    GROUP BY Ottelu, Joukkue;
 
 CREATE VIEW Maalit AS
     SELECT 
