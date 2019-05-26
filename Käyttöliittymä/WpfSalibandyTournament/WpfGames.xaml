@@ -24,7 +24,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button>Muokkaa</Button>
+                                <Button x:Name="btnOpenGame" Content="Avaa" Click="btnOpenGame_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

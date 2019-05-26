@@ -33,6 +33,11 @@ namespace WpfSalibandyTournament
 
         private void BtnNew_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void btnOpenGame_Click(object sender, RoutedEventArgs e)
+        {
             Game selectedGame = (Game)dgGames.SelectedItem;
             if (selectedGame != null)
             {

@@ -161,10 +161,12 @@ namespace WpfSalibandyTournament
             List<Goal> goals = new List<Goal>();
             string str = $"Maali WHERE Ottelu = {gameID} AND Joukkue = {teamID} ORDER BY Aika";
             DataTable dt = DBSalibandytournament.GetViewDB(str);
+            int maalinro = 0;
             foreach (DataRow item in dt.Rows)
             {
                 Goal g = new Goal()
                 {
+                    Maalinro = ++maalinro,
                     MaaliID = int.Parse(item[0].ToString()),
                     Aika = item[1].ToString(),
                     Erikoistilanne = item[2].ToString(),
