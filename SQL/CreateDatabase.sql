@@ -45,6 +45,7 @@ CREATE TABLE Ottelu (
 	Paikka VARCHAR(20),
     Kotijoukkue smallint,
     Vierasjoukkue smallint,
+	Paatetty boolean,
 	CONSTRAINT uc_AikaPaikka UNIQUE (Aika, Paikka),
 	CONSTRAINT chk_KotiVieras CHECK (Kotijoukkue <> Vierasjoukkue),
 	CONSTRAINT fk_Kotijoukkue FOREIGN KEY (Kotijoukkue)
@@ -55,13 +56,13 @@ CREATE TABLE Ottelu (
 		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
 
-insert into Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue) values
-('2019-05-14 14:00:00' , 'Kenttä 1', 1, 2),
-('2019-05-14 14:00:00' , 'Kenttä 2', 3, 4),
-('2019-05-14 16:00:00' , 'Kenttä 1', 1, 3),
-('2019-05-14 16:00:00' , 'Kenttä 2', 2, 4),
-('2019-05-14 18:00:00' , 'Kenttä 1', 2, 3),
-('2019-05-14 18:00:00' , 'Kenttä 2', 4, 1);
+INSERT INTO Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue, Paatetty) VALUES
+('2019-05-14 14:00:00' , 'Kenttä 1', 1, 2, 1),
+('2019-05-14 14:00:00' , 'Kenttä 2', 3, 4, 1),
+('2019-05-14 16:00:00' , 'Kenttä 1', 1, 3, 1),
+('2019-05-14 16:00:00' , 'Kenttä 2', 2, 4, 0),
+('2019-05-14 18:00:00' , 'Kenttä 1', 2, 3, 0),
+('2019-05-14 18:00:00' , 'Kenttä 2', 4, 1, 0);
 
 CREATE TABLE Maali (
 	MaaliID SMALLINT PRIMARY KEY auto_increment,
@@ -115,7 +116,7 @@ CREATE TABLE Rangaistus (
 		ON DELETE RESTRICT
 	)ENGINE = InnoDB;
     
-insert into Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu) values
+INSERT INTO Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu) VALUES
 ('2019-05-14 14:35:10', 2, 'Kampitus', 1, 1, 1),
 ('2019-05-14 16:30:10', 5, 'Väkivaltaisuus', 6, 3, 3);
 
@@ -160,7 +161,7 @@ CREATE VIEW Pelaajat AS SELECT HenkiloID, Sukunimi, Etunimi, Pelinumero, Pelipai
     INNER JOIN Joukkue ON Joukkue.JoukkueID = Henkilot.JoukkueID;
     
 CREATE VIEW Ottelut AS
-    SELECT OtteluId, Aika, Paikka, Kotijoukkue, kj.Nimi AS Koti, Vierasjoukkue, vj.Nimi AS Vieras, IFNULL(o1.Maalit,0) As Kotimaalit, IFNULL(o2.Maalit,0) As Vierasmaalit
+    SELECT OtteluId, Aika, Paikka, Kotijoukkue, kj.Nimi AS Koti, Vierasjoukkue, vj.Nimi AS Vieras, IFNULL(o1.Maalit,0) As Kotimaalit, IFNULL(o2.Maalit,0) As Vierasmaalit, Paatetty
     FROM Ottelu
     JOIN Joukkue kj ON kj.JoukkueId = Ottelu.Kotijoukkue
     JOIN Joukkue vj ON vj.JoukkueId = Ottelu.Vierasjoukkue
