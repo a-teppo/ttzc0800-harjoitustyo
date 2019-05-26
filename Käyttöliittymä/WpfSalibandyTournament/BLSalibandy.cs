@@ -9,7 +9,6 @@ namespace WpfSalibandyTournament
 {
     public partial class DBSalibandytournament
     {
-        
         public static List<Player> GetPlayersFromDB()
         {
             List<Player> players = new List<Player>();
@@ -44,7 +43,6 @@ namespace WpfSalibandyTournament
 
                 teams.Add(team);
             }
-
             return teams;
         }
         public static List<Game> GetGamesFromDB()

@@ -40,7 +40,7 @@ namespace WpfSalibandyTournament
             txtGameID.Text = game.OtteluId.ToString();
             txtHometeam.Text = game.KotiNimi;
             homegoals = GetGoalsFromDB(game.OtteluId, game.KotiId);
-            awaygoals = GetGoalsFromDB(game.OtteluId, game.VierasId);
+            //awaygoals = GetGoalsFromDB(game.OtteluId, game.VierasId);
             dgHomeGoals.ItemsSource = homegoals;
             //dgAwayGoals.ItemsSource = awaygoals;
         }
@@ -50,8 +50,8 @@ namespace WpfSalibandyTournament
             public int Maalinro { get; set; }
             public string Aika { get; set; }
             public string Erikoistilanne { get; set; }
-            public int Maalintekija { get; set; }
-            public int Syottaja { get; set; }
+            public string Maalintekija { get; set; }
+            public string Syottaja { get; set; }
             public int Ottelu { get; set; }
             public int Joukkue { get; set; }
         }
@@ -170,8 +170,8 @@ namespace WpfSalibandyTournament
                     MaaliID = int.Parse(item[0].ToString()),
                     Aika = item[1].ToString(),
                     Erikoistilanne = item[2].ToString(),
-                    Maalintekija = int.Parse(item[3].ToString()),
-                    Syottaja = int.Parse(item[4].ToString()),
+                    Maalintekija = item[3].ToString(),
+                    Syottaja = item[4].ToString(),
                     Joukkue = int.Parse(item[5].ToString()),
                     Ottelu = int.Parse(item[6].ToString())
                 };
