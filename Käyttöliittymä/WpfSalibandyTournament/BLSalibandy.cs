@@ -16,13 +16,14 @@ namespace WpfSalibandyTournament
             DataTable dt = GetViewDB("Pelaajat");
             foreach (DataRow item in dt.Rows)
             {
-                Player player = new Player();
-                player.HenkiloId = int.Parse(item[0].ToString());
-                player.Sukunimi = item[1].ToString();
-                player.Etunimi = item[2].ToString();
-                player.Syntymavuosi = int.Parse(item[3].ToString());
-                player.Nimi = item[4].ToString();
-
+                Player player = new Player()
+                {
+                    HenkiloId = int.Parse(item[0].ToString()),
+                    Sukunimi = item[1].ToString(),
+                    Etunimi = item[2].ToString(),
+                    Syntymavuosi = int.Parse(item[3].ToString()),
+                    Nimi = item[4].ToString()
+                };
                 players.Add(player);
             }
             return players;
@@ -33,12 +34,13 @@ namespace WpfSalibandyTournament
             DataTable dt = GetViewDB("Joukkueet");
             foreach (DataRow item in dt.Rows)
             {
-                Team team = new Team();
-                team.JoukkueId = int.Parse(item[0].ToString());
-                team.Nimi = item[1].ToString();
-                team.Paikkakunta = item[2].ToString();
-                team.Seura = item[3].ToString();
-
+                Team team = new Team()
+                {
+                    JoukkueId = int.Parse(item[0].ToString()),
+                    Nimi = item[1].ToString(),
+                    Paikkakunta = item[2].ToString(),
+                    Seura = item[3].ToString()
+                };
                 teams.Add(team);
             }
 
@@ -60,7 +62,8 @@ namespace WpfSalibandyTournament
                     VierasId = int.Parse(item[5].ToString()),
                     VierasNimi = item[6].ToString(),
                     KotiMaalit = int.Parse(item[7].ToString()),
-                    VierasMaalit = int.Parse(item[8].ToString())
+                    VierasMaalit = int.Parse(item[8].ToString()),
+                    Paatetty = (bool)item[9]
                 };
                 games.Add(game);
             }
@@ -94,5 +97,6 @@ namespace WpfSalibandyTournament
         public string VierasNimi { get; set; }
         public int KotiMaalit { get; set; }
         public int VierasMaalit { get; set; }
+        public bool Paatetty { get; set; }
     }
 }
