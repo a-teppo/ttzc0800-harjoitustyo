@@ -65,8 +65,8 @@ namespace WpfSalibandyTournament
             {
                 int JoukkueId = int.Parse(txtTeamID.Text);
                 string updatetablestring = "Joukkue";
-                string updatevaluestring = $"Joukkueennimi = {Nimi}, Paikkakunta = {Paikkakunta}, Seura = {Seura}, Logo tiedosto = {LogoURL}";
-                string updatewherestring = $"JoukkueID = {JoukkueId}";
+                string updatevaluestring = $"Nimi = {Nimi}, Paikkakunta = {Paikkakunta}, Seura = {Seura}, LogoURL = {LogoURL}";
+                string updatewherestring = $"JoukkueId = {JoukkueId}";
                 DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
                 OpenTeam();
             }

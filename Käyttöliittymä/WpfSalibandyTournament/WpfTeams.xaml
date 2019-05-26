@@ -21,7 +21,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button>Muokkaa</Button>
+                                <Button x:Name="btnEditteam" Content="Muokkaa" Click="BtnEditteam_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

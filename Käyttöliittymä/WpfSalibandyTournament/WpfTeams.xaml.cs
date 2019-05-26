@@ -37,6 +37,18 @@ namespace WpfSalibandyTournament
             WpfTeameditor teameditor = new WpfTeameditor();
             teameditor.ShowDialog();
         }
+
+        private void BtnEditteam_Click(object sender, RoutedEventArgs e)
+        {
+            Team selectedTeam = (Team)dgTeams.SelectedItem;
+            if (selectedTeam != null)
+            {
+                WpfTeameditor teameditor = new WpfTeameditor(selectedTeam);
+                teameditor.ShowDialog();
+            }
+            
+            Close();
+        }
     }
 
 }
