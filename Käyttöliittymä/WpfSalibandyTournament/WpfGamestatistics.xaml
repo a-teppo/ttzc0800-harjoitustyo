@@ -25,7 +25,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                     <TextBlock Text="OtteluNro - " HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="14"/>
-                    <TextBlock Text="12" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock x:Name="txtGameID" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel VerticalAlignment="Center">
                                 <Button Content="Käynnistä" Width="65" Margin="0" Click="StartTimer"/>

@@ -23,6 +23,7 @@ namespace WpfSalibandyTournament
     public partial class WpfGamestatistics : Window
     {
         private List<Goal> homegoals = new List<Goal>();
+        private List<Goal> awaygoals = new List<Goal>();
         private int homegoalnumber = 0;
         private List<Penalty> homepenalties = new List<Penalty>();
         private int homepenaltynumber = 0;
@@ -32,20 +33,27 @@ namespace WpfSalibandyTournament
         private string periodTime = string.Empty;
         public List<string> Erikoistilanteet { get; set; }
         
-        public WpfGamestatistics()
+        public WpfGamestatistics(Game game)
         {
             InitializeComponent();
-            dgHomeGoals.ItemsSource = homegoals;
             FillCombo();
+            txtGameID.Text = game.OtteluId.ToString();
+            txtHometeam.Text = game.KotiNimi;
+            homegoals = GetGoalsFromDB(game.OtteluId, game.KotiId);
+            awaygoals = GetGoalsFromDB(game.OtteluId, game.VierasId);
+            dgHomeGoals.ItemsSource = homegoals;
+            //dgAwayGoals.ItemsSource = awaygoals;
         }
         public class Goal
         {
+            public int MaaliID { get; set; }
             public int Maalinro { get; set; }
             public string Aika { get; set; }
             public string Erikoistilanne { get; set; }
             public int Maalintekija { get; set; }
             public int Syottaja { get; set; }
             public int Ottelu { get; set; }
+            public int Joukkue { get; set; }
         }
         public class Penalty
         {
@@ -127,7 +135,6 @@ namespace WpfSalibandyTournament
                 dgAwayGoals.ItemsSource = awaygoals;
             }*/
         }
-
         private void AddPenalty(object sender, RoutedEventArgs e)
         {
             Button b = e.Source as Button;
@@ -148,6 +155,27 @@ namespace WpfSalibandyTournament
         {
             Erikoistilanteet = new List<string>() { "YV", "AV", "RL" };
             cmbErikoistilanne.ItemsSource = Erikoistilanteet;
+        }
+        public static List<Goal> GetGoalsFromDB(int gameID, int teamID)
+        {
+            List<Goal> goals = new List<Goal>();
+            string str = $"Maali WHERE Ottelu = {gameID} AND Joukkue = {teamID} ORDER BY Aika";
+            DataTable dt = DBSalibandytournament.GetViewDB(str);
+            foreach (DataRow item in dt.Rows)
+            {
+                Goal g = new Goal()
+                {
+                    MaaliID = int.Parse(item[0].ToString()),
+                    Aika = item[1].ToString(),
+                    Erikoistilanne = item[2].ToString(),
+                    Maalintekija = int.Parse(item[3].ToString()),
+                    Syottaja = int.Parse(item[4].ToString()),
+                    Joukkue = int.Parse(item[5].ToString()),
+                    Ottelu = int.Parse(item[6].ToString())
+                };
+                goals.Add(g);
+            }
+            return goals;
         }
     }
 }
