@@ -19,10 +19,13 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfPlayereditor : Window
     {
+        public List<Team> Teams { get; set; }
         Player player;
         public WpfPlayereditor()
         {
             InitializeComponent();
+            Teams = DBSalibandytournament.GetTeamsFromDB();
+            cmbTeams.ItemsSource = Teams;
         }
         public WpfPlayereditor(Player player)
         {
@@ -35,7 +38,9 @@ namespace WpfSalibandyTournament
             txtPlayernumber.Text = player.Pelinumero.ToString();
             txtPosition.Text = player.Pelipaikka;
             txtRole.Text = player.Rooli;
-            txtTeams.Text = player.JoukkueId.ToString();
+            cmbTeams.SelectedValue = player.JoukkueId;
+            Teams = DBSalibandytournament.GetTeamsFromDB();
+            cmbTeams.ItemsSource = Teams;
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -48,11 +53,12 @@ namespace WpfSalibandyTournament
         {
             string Lastname = $"'{txtLastname.Text}'";
             string Firstname = $"'{txtFirstname.Text}'";
-            int Playernumber = int.Parse(txtPlayernumber.Text);
+            string Playernumber = $"'{txtPlayernumber.Text}'";
             string Position = $"'{txtPosition.Text}'";
             int Birthyear = int.Parse(txtBirthday.Text);
             string Role = $"'{txtRole.Text}'";
-            int TeamID = 2;
+            int TeamID;
+            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out TeamID);
             
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
