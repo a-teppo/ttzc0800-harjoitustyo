@@ -32,6 +32,10 @@ namespace WpfSalibandyTournament
             txtLastname.Text = player.Sukunimi;
             txtFirstname.Text = player.Etunimi;
             txtBirthday.Text = player.Syntymavuosi.ToString();
+            txtPlayernumber.Text = player.Pelinumero.ToString();
+            txtPosition.Text = player.Pelipaikka;
+            txtRole.Text = player.Rooli;
+            txtTeams.Text = player.JoukkueId.ToString();
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -42,7 +46,6 @@ namespace WpfSalibandyTournament
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
         {
-            int PersonID = int.Parse(txtID.Text);
             string Lastname = $"'{txtLastname.Text}'";
             string Firstname = $"'{txtFirstname.Text}'";
             int Playernumber = int.Parse(txtPlayernumber.Text);
@@ -51,7 +54,7 @@ namespace WpfSalibandyTournament
             string Role = $"'{txtRole.Text}'";
             int TeamID = 2;
             
-            if (txtID.Text == null)
+            if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 string inserttablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
                 string insertvaluestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
@@ -59,6 +62,7 @@ namespace WpfSalibandyTournament
             }
             else
             {
+                int PersonID = int.Parse(txtID.Text);
                 string updatetablestring = "Henkilot";
                 string updatevaluestring = $"Sukunimi = {Lastname}, Etunimi = {Firstname}, Pelinumero = {Playernumber}, Pelipaikka = {Position}, Syntymavuosi = {Birthyear}, Rooli = {Role}, JoukkueID = {TeamID}";
                 string updatewherestring = $"HenkiloID = {PersonID}";

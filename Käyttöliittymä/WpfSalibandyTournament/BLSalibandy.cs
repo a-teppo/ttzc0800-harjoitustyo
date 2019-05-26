@@ -16,14 +16,16 @@ namespace WpfSalibandyTournament
             DataTable dt = GetViewDB("Pelaajat");
             foreach (DataRow item in dt.Rows)
             {
-                Player player = new Player()
-                {
-                    HenkiloId = int.Parse(item[0].ToString()),
-                    Sukunimi = item[1].ToString(),
-                    Etunimi = item[2].ToString(),
-                    Syntymavuosi = int.Parse(item[3].ToString()),
-                    Nimi = item[4].ToString()
-                };
+                Player player = new Player();
+                player.HenkiloId = int.Parse(item[0].ToString());
+                player.Sukunimi = item[1].ToString();
+                player.Etunimi = item[2].ToString();
+                player.Pelinumero = int.Parse(item[3].ToString());
+                player.Pelipaikka = item[4].ToString();
+                player.Syntymavuosi = int.Parse(item[5].ToString());
+                player.Rooli = item[6].ToString();
+                player.JoukkueId = int.Parse(item[7].ToString());
+                player.Nimi = item[8].ToString();
                 players.Add(player);
             }
             return players;
@@ -34,13 +36,12 @@ namespace WpfSalibandyTournament
             DataTable dt = GetViewDB("Joukkueet");
             foreach (DataRow item in dt.Rows)
             {
-                Team team = new Team()
-                {
-                    JoukkueId = int.Parse(item[0].ToString()),
-                    Nimi = item[1].ToString(),
-                    Paikkakunta = item[2].ToString(),
-                    Seura = item[3].ToString()
-                };
+                Team team = new Team();
+                team.JoukkueId = int.Parse(item[0].ToString());
+                team.Nimi = item[1].ToString();
+                team.Paikkakunta = item[2].ToString();
+                team.Seura = item[3].ToString();
+
                 teams.Add(team);
             }
 
@@ -75,8 +76,12 @@ namespace WpfSalibandyTournament
         public int HenkiloId { get; set; }
         public string Sukunimi { get; set; }
         public string Etunimi { get; set; }
+        public int Pelinumero { get; set; }
+        public string Pelipaikka { get; set; }
         public int Syntymavuosi { get; set; }
+        public string Rooli { get; set; }
         public string Nimi { get; set; }
+        public int JoukkueId { get; set; }
     }
     public class Team
     {
@@ -86,7 +91,7 @@ namespace WpfSalibandyTournament
         public string Seura { get; set; }
         public string LogoURL { get; set; }
     }
-    public class Game
+     public class Game
     {
         public int OtteluId { get; set; }
         public string Aika { get; set; }

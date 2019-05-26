@@ -21,9 +21,21 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfTeameditor : Window
     {
+        Team team;
         public WpfTeameditor()
         {
             InitializeComponent();
+        }
+
+        public WpfTeameditor(Team team)
+        {
+            InitializeComponent();
+            this.team = team;
+            txtTeamID.Text = team.JoukkueId.ToString();
+            txtTeamname.Text = team.Nimi;
+            txtLocation.Text = team.Paikkakunta;
+            txtOrganization.Text = team.Seura;
+            txtLogofile.Text = team.LogoURL;
         }
 
         private void btnLogofile_Click(object sender, RoutedEventArgs e)
@@ -35,14 +47,42 @@ namespace WpfSalibandyTournament
               txtLogofile.Text = dlg.FileName;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnSaveTeam_Click(object sender, RoutedEventArgs e)
         {
+            
+            string Nimi = $"'{txtTeamname.Text }'";
+            string Paikkakunta = $"'{txtLocation.Text}'";
+            string Seura = $"'{txtOrganization.Text}'";
+            string LogoURL = $"'{txtLogofile.Text}'";
+
+            if (string.IsNullOrWhiteSpace(txtTeamID.Text))
+            {
+                string inserttablestring = "Joukkue (Nimi, Paikkakunta, Seura, LogoURL)";
+                string insertvaluestring = $"({Nimi}, {Paikkakunta}, {Seura}, {LogoURL})";
+                DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+            }
+            else
+            {
+                int JoukkueId = int.Parse(txtTeamID.Text);
+                string updatetablestring = "Joukkue";
+                string updatevaluestring = $"Joukkueennimi = {Nimi}, Paikkakunta = {Paikkakunta}, Seura = {Seura}, Logo tiedosto = {LogoURL}";
+                string updatewherestring = $"JoukkueID = {JoukkueId}";
+                DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
+                OpenTeam();
+            }
             Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            OpenTeam();
             Close();
+        }
+
+        private void OpenTeam()
+        {
+            WpfTeams teams = new WpfTeams();
+            teams.Show();
         }
     }
 }
