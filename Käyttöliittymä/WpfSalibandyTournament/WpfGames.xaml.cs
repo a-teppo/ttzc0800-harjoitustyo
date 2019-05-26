@@ -33,8 +33,13 @@ namespace WpfSalibandyTournament
 
         private void BtnNew_Click(object sender, RoutedEventArgs e)
         {
-            WpfGamestatistics stats = new WpfGamestatistics();
-            stats.Show();
+            Game selectedGame = (Game)dgGames.SelectedItem;
+            if (selectedGame != null)
+            {
+                WpfGamestatistics stats = new WpfGamestatistics(selectedGame);
+                stats.ShowDialog();
+            }
+            Close();
         }
     }
 }

@@ -37,7 +37,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Koti" HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="16"/>
-                        <TextBlock Text="Joukkue1" Margin="45 5 0 0"  FontSize="16"/>
+                        <TextBlock x:Name="txtHometeam" Margin="45 5 0 0"  FontSize="16"/>
                     </StackPanel>
                     <DataGrid AutoGenerateColumns="False" Name="dgHomeGoals" CanUserAddRows="False" ItemsSource="{Binding}" Margin="10">
                         <DataGrid.Columns>
