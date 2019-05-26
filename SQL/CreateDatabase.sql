@@ -66,7 +66,7 @@ INSERT INTO Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue, Paatetty) VALUES
 
 CREATE TABLE Maali (
 	MaaliID SMALLINT PRIMARY KEY auto_increment,
-	Aika DATETIME,
+	Aika VARCHAR(5),
 	Erikoistilanne CHAR(2) CHECK (Erikoistilanne IN (AV,YV,RL)),
     Maalintekija smallint NOT NULL,
     Syottaja smallint,
@@ -87,15 +87,15 @@ CREATE TABLE Maali (
 	)ENGINE = InnoDB;
     
 INSERT INTO Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu) VALUES
-('2019-05-14 14:14:20', 'YV', 2, 1, 1, 1),
-('2019-05-14 14:24:03', null, 4, 3, 2, 1),
-('2019-05-14 14:31:10', null, 1, 2, 1, 1),
-('2019-05-14 14:15:30', 'AV', 5, 6, 3, 2),
-('2019-05-14 14:34:01', null, 6, 5, 3, 2),
-('2019-05-14 14:40:12', null, 6, null, 3, 2),
-('2019-05-14 16:05:30', null, 1, null, 2, 3),
-('2019-05-14 16:34:01', null, 1, null, 2, 3),
-('2019-05-14 16:40:12', 'TM', 1, 2, 2, 3);
+('7:21', 'YV', 2, 1, 1, 1),
+('9:45', null, 4, 3, 2, 1),
+('25:55', null, 1, 2, 1, 1),
+('1:09', 'AV', 5, 6, 3, 2),
+('59:58', null, 6, 5, 3, 2),
+('59:59', null, 6, null, 3, 2),
+('18:44', null, 1, null, 2, 3),
+('26:25', null, 1, null, 2, 3),
+('42:01', 'TM', 1, 2, 2, 3);
 
 CREATE TABLE Rangaistus (
 	RangaistusID SMALLINT PRIMARY KEY auto_increment,
