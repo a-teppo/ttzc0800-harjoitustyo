@@ -20,24 +20,22 @@ namespace WpfSalibandyTournament
     public partial class WpfPlayers : Window
     {
         private List<Player> players = DBSalibandytournament.GetPlayersFromDB();
-
         public WpfPlayers()
         {
             InitializeComponent();
+            //show playerlist in datagrid
             dgPlayers.ItemsSource = players;
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
         private void btnNewperson_Click(object sender, RoutedEventArgs e)
         {
             WpfPlayereditor playereditor = new WpfPlayereditor();
             playereditor.ShowDialog();
             Close();
         }
-
         private void btnEditPerson_Click(object sender, RoutedEventArgs e)
         {
             Player selectedPlayer = (Player)dgPlayers.SelectedItem;
