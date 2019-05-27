@@ -9,23 +9,46 @@ namespace WpfSalibandyTournament
 {
     public partial class DBSalibandytournament
     {
+        //get all players
         public static List<Player> GetPlayersFromDB()
         {
             List<Player> players = new List<Player>();
             DataTable dt = GetViewDB("Pelaajat");
             foreach (DataRow item in dt.Rows)
             {
-                Player player = new Player();
-                player.HenkiloId = int.Parse(item[0].ToString());
-                player.Sukunimi = item[1].ToString();
-                player.Etunimi = item[2].ToString();
-                player.Pelinumero = item[3].ToString();
-                player.Pelipaikka = item[4].ToString();
-                player.Syntymavuosi = int.Parse(item[5].ToString());
-                player.Rooli = item[6].ToString();
-                player.JoukkueId = int.Parse(item[7].ToString());
-                player.Nimi = item[8].ToString();
+                Player player = new Player()
+                { 
+                    HenkiloId = int.Parse(item[0].ToString()),
+                    Sukunimi = item[1].ToString(),
+                    Etunimi = item[2].ToString(),
+                    Pelinumero = item[3].ToString(),
+                    Pelipaikka = item[4].ToString(),
+                    Syntymavuosi = int.Parse(item[5].ToString()),
+                    Rooli = item[6].ToString(),
+                    JoukkueId = int.Parse(item[7].ToString()),
+                    Nimi = item[8].ToString()
+                };
                 players.Add(player);
+            }
+            return players;
+        }
+        //get players by team
+        public static List<Player> GetTeamPlayersFromDB(int teamID)
+        {
+            List<Player> players = new List<Player>();
+            string str = $"Pelaajat WHERE JoukkueID = {teamID} ORDER BY Pelinumero";
+            DataTable dt = DBSalibandytournament.GetViewDB(str);
+            foreach (DataRow item in dt.Rows)
+            {
+                if (item[3] != null)
+                {
+                    Player p = new Player()
+                    {
+                        HenkiloId = int.Parse(item[0].ToString()),
+                        Pelinumero = item[3].ToString()
+                    };
+                    players.Add(p);
+                }
             }
             return players;
         }
@@ -35,12 +58,13 @@ namespace WpfSalibandyTournament
             DataTable dt = GetViewDB("Joukkueet");
             foreach (DataRow item in dt.Rows)
             {
-                Team team = new Team();
-                team.JoukkueId = int.Parse(item[0].ToString());
-                team.Nimi = item[1].ToString();
-                team.Paikkakunta = item[2].ToString();
-                team.Seura = item[3].ToString();
-
+                Team team = new Team()
+                {
+                    JoukkueId = int.Parse(item[0].ToString()),
+                    Nimi = item[1].ToString(),
+                    Paikkakunta = item[2].ToString(),
+                    Seura = item[3].ToString()
+                };
                 teams.Add(team);
             }
             return teams;
@@ -67,6 +91,58 @@ namespace WpfSalibandyTournament
                 games.Add(game);
             }
             return games;
+        }
+        public static List<Goal> GetGoalsFromDB(int gameID, int teamID)
+        {
+            List<Goal> goals = new List<Goal>();
+            string str = $"Maali WHERE Ottelu = {gameID} AND Joukkue = {teamID} ORDER BY MaaliID";
+            DataTable dt = DBSalibandytournament.GetViewDB(str);
+            int index = 0;
+            foreach (DataRow item in dt.Rows)
+            {
+                Goal g = new Goal()
+                {
+                    Maalinro = ++index,
+                    MaaliID = int.Parse(item[0].ToString()),
+                    Aika = item[1].ToString(),
+                    Erikoistilanne = item[2].ToString(),
+                    Maalintekija = int.Parse(item[3].ToString()),
+                    Syottaja = ToNullableInt(item[4].ToString()),
+                    Joukkue = int.Parse(item[5].ToString()),
+                    Ottelu = int.Parse(item[6].ToString())
+                };
+                goals.Add(g);
+            }
+            return goals;
+        }
+        public static List<Penalty> GetPenaltiesFromDB(int gameID, int teamID)
+        {
+            List<Penalty> penalties = new List<Penalty>();
+            string str = $"Rangaistus WHERE Ottelu = {gameID} AND Joukkue = {teamID} ORDER BY RangaistusID";
+            DataTable dt = DBSalibandytournament.GetViewDB(str);
+            int index = 0;
+            foreach (DataRow item in dt.Rows)
+            {
+                Penalty p = new Penalty()
+                {
+                    Rangaistusnro = ++index,
+                    RangaistusID = int.Parse(item[0].ToString()),
+                    Aika = item[1].ToString(),
+                    Kesto = int.Parse(item[2].ToString()),
+                    Syy = item[3].ToString(),
+                    Henkilo = int.Parse(item[4].ToString()),
+                    Joukkue = int.Parse(item[5].ToString()),
+                    Ottelu = int.Parse(item[6].ToString())
+                };
+                penalties.Add(p);
+            }
+            return penalties;
+        }
+        //convert string to nullable int
+        public static int? ToNullableInt(string s)
+        {
+            if (int.TryParse(s, out int i)) return i;
+            return null;
         }
     }
     public class Player
@@ -101,5 +177,27 @@ namespace WpfSalibandyTournament
         public int KotiMaalit { get; set; }
         public int VierasMaalit { get; set; }
         public bool Paatetty { get; set; }
+    }
+    public class Goal
+    {
+        public int MaaliID { get; set; }
+        public int Maalinro { get; set; }
+        public string Aika { get; set; }
+        public string Erikoistilanne { get; set; }
+        public int Maalintekija { get; set; }
+        public int? Syottaja { get; set; }
+        public int Ottelu { get; set; }
+        public int Joukkue { get; set; }
+    }
+    public class Penalty
+    {
+        public int Rangaistusnro { get; set; }
+        public int RangaistusID { get; set; }
+        public string Aika { get; set; }
+        public int Kesto { get; set; }
+        public string Syy { get; set; }
+        public int Henkilo { get; set; }
+        public int Joukkue { get; set; }
+        public int Ottelu { get; set; }
     }
 }
