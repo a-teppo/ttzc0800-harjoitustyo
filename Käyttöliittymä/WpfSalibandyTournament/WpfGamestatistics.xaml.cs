@@ -40,8 +40,11 @@ namespace WpfSalibandyTournament
         {
             InitializeComponent();
             FillCombo(game.KotiId, game.VierasId);
-            txtGameID.Text = game.OtteluId.ToString();
+            txtGameId.Text = game.OtteluId.ToString();
             txtHometeam.Text = game.KotiNimi;
+            txtHomeId.Text = game.KotiId.ToString();
+            txtAwayteam.Text = game.VierasNimi;
+            txtAwayId.Text = game.VierasId.ToString();
             CalculateTotalTime(null, null);
             homegoals = DBSalibandytournament.GetGoalsFromDB(game.OtteluId, game.KotiId);
             homepenalties = DBSalibandytournament.GetPenaltiesFromDB(game.OtteluId, game.KotiId);
@@ -183,6 +186,28 @@ namespace WpfSalibandyTournament
                 i++;
             }
             return i;
+        }
+        private void btnEndGame_Click(object sender, RoutedEventArgs e)
+        {
+            string goaltable = "Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu)";
+            string hgvaluestring = "";
+            //string agvaluestring = "";
+            //string hpvaluestring = "";
+            //string apvaluwstring = "";
+            //make string of all goal rows for SQL
+            foreach(Goal g in homegoals)
+            {
+                string aika = $"'{g.Aika}'";
+                string et = $"'{g.Erikoistilanne}'";
+                int mt = g.Maalintekija;
+                string s = g.Syottaja == null ?"null":g.Syottaja.ToString();
+                int j = int.Parse(txtHomeId.Text);
+                int o = int.Parse(txtGameId.Text);
+                hgvaluestring += $"({aika},{et},{mt},{s},{j},{o}),";
+            }
+            //remove comma (,) after last row
+            hgvaluestring = hgvaluestring.Remove(hgvaluestring.Length - 1);
+            DBSalibandytournament.InsertIntoDB(goaltable, hgvaluestring);
         }
     }
 }

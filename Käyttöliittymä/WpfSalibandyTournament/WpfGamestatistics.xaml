@@ -11,7 +11,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal" MinHeight="250" MaxHeight="400">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" RenderTransformOrigin="0.76,0.651">
                             <TextBlock Text="Ottelupöytäkirja" Width="185" FontWeight="Bold" FontSize="16" Margin="5 5 0 0" HorizontalAlignment="Left"/>
                             <StackPanel HorizontalAlignment="Right" >
                                 <StackPanel Orientation="Horizontal" Height="25">
@@ -23,10 +23,11 @@
                                     <TextBox x:Name="txtPeriodLenght" Text="15" HorizontalContentAlignment="Center" Width="30" Height="20" LostFocus="CalculateTotalTime"/>
                                 </StackPanel>
                             </StackPanel>
+                            <Button x:Name="btnEndGame" Content="Päätä ottelu" Width="80" Height="30" Margin="380 0 0 0" Click="btnEndGame_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="OtteluNro - " HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="14"/>
-                            <TextBlock x:Name="txtGameID" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock x:Name="txtGameId" Margin="0 5 80 0" FontWeight="Bold" FontSize="14"/>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel VerticalAlignment="Center">
                                     <Button Content="Käynnistä" Width="65" Margin="0" Click="StartTimer"/>
@@ -40,10 +41,12 @@
                             <StackPanel Orientation="Horizontal" Width="400">
                                 <TextBlock Text="Koti" HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="16"/>
                                 <TextBlock x:Name="txtHometeam" Margin="45 5 0 0"  FontSize="16"/>
+                                <TextBlock x:Name="txtHomeId" Visibility="Hidden"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Width="400">
                                 <TextBlock Text="Vieras" HorizontalAlignment="Left" Margin="10 5 0 0" FontWeight="Bold" FontSize="16"/>
                                 <TextBlock x:Name="txtAwayteam" Margin="45 5 0 0"  FontSize="16"/>
+                                <TextBlock x:Name="txtAwayId" Visibility="Hidden"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -80,7 +83,8 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" MinHeight="100" MaxHeight="400">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="400">
                     <DataGrid AutoGenerateColumns="False" Name="dgHomePenalties" CanUserAddRows="False" ItemsSource="{Binding}" Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Rangaistus" IsReadOnly="True" Binding="{Binding Path=Rangaistusnro}" Width="70"></DataGridTextColumn>
@@ -90,7 +94,8 @@
                             <DataGridTextColumn Header="Syy" IsReadOnly="False" Binding="{Binding Path=Syy, Mode=TwoWay}" Width="80"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <StackPanel>
+                    </StackPanel>
+                    <StackPanel Width="400">
                         <DataGrid AutoGenerateColumns="False" Name="dgAwayPenalties" CanUserAddRows="False" ItemsSource="{Binding}" Margin="10">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Rangaistus" IsReadOnly="True" Binding="{Binding Path=Rangaistusnro}" Width="70"></DataGridTextColumn>
