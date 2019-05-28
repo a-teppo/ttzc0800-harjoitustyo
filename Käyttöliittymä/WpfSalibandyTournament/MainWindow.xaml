@@ -16,14 +16,14 @@
         <StackPanel Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Bottom">
             <Image Stretch="Fill">
                 <Image.Source>
-                    <BitmapImage UriSource="/images/salibandy_tytto1.jpg"/>
+                    <BitmapImage UriSource="salibandy_tytto1.jpg"/>
                 </Image.Source>
             </Image>
         </StackPanel>
         <StackPanel Height="110" Width="190" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Image Stretch="Fill">
                 <Image.Source>
-                    <BitmapImage UriSource="/images/salibandy_logo1.jpg"/>
+                    <BitmapImage UriSource="salibandy_logo1.jpg"/>
                 </Image.Source>
             </Image>
         </StackPanel>

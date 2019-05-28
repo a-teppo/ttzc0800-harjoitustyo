@@ -168,6 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="floorball.ico" />
+    <Resource Include="salibandy_logo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="salibandy_tytto1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
