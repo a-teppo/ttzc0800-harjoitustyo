@@ -98,11 +98,11 @@ namespace WpfSalibandyTournament
                     {
                         sw.Stop();
                         MessageBox.Show("Erä päättyi");
-                    }
-                    //enable end game button at end of last period
-                    if (currentTime == lblTotalTime.Content.ToString())
-                    {
-                        btnEndGame.IsEnabled = true;
+                        //enable end game button only at end of last period
+                        if (currentTime == lblTotalTime.Content.ToString())
+                        {
+                            btnEndGame.IsEnabled = true;
+                        }
                     }
                 }
             }
@@ -196,8 +196,8 @@ namespace WpfSalibandyTournament
         private void FillCombo(int homeID, int awayID)
         {
             NumberOfPeriods = new List<string>(){ "1", "2","3"};
-            //1 minute period lenght for testing purposes
-            PeriodLenghts = new List<string>(){ "0,1", "10", "15", "20"};
+            //0,15 minute period lenght (9 seconds) for testing purposes
+            PeriodLenghts = new List<string>(){ "0,15", "10", "15", "20"};
             SpecialTeams = new List<string>() { "YV", "AV", "RL" };
             cmbNumberOfPeriods.ItemsSource = NumberOfPeriods;
             cmbPeriodLenght.ItemsSource = PeriodLenghts;
@@ -215,29 +215,50 @@ namespace WpfSalibandyTournament
         private void btnEndGame_Click(object sender, RoutedEventArgs e)
         {
             string goaltable = "Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu)";
-            string hgvaluestring = "";
-            //string agvaluestring = "";
-            //string hpvaluestring = "";
-            //string apvaluestring = "";
-            //make string of all goal rows for SQL
-            foreach(Goal g in homegoals)
-            {
-                string aika = $"'{g.Aika}'";
-                string et = $"'{g.Erikoistilanne}'";
-                int mt = g.Maalintekija;
-                string s = g.Syottaja == null ?"null":g.Syottaja.ToString();
-                int j = int.Parse(txtHomeId.Text);
-                int o = gameID;
-                hgvaluestring += $"({aika},{et},{mt},{s},{j},{o}),";
-            }
-            //remove comma (,) after last row
-            hgvaluestring = hgvaluestring.Remove(hgvaluestring.Length - 1);
-            DBSalibandytournament.InsertIntoDB(goaltable, hgvaluestring);
+            DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(homegoals));
+            DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(awaygoals));
+            string penaltytable = "Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu)";
+            DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(homepenalties));
+            DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(awaypenalties));
             //mark game ended
             DBSalibandytournament.UpdateDB("Ottelu", "Paatetty = TRUE", $"OtteluID = {gameID}");
             gameStatus = true;
             MessageBox.Show("Ottelu on onnistuneesti päätetty.");
             Close();
+        }
+        private string MakeGoalSql(List<Goal> goals)
+        {
+            string retval = "";
+            foreach (Goal g in goals)
+            {
+                string aika = $"'{g.Aika}'";
+                string et = $"'{g.Erikoistilanne}'";
+                int mt = g.Maalintekija;
+                string s = g.Syottaja == null ? "null" : g.Syottaja.ToString();
+                int j = int.Parse(txtHomeId.Text);
+                int o = gameID;
+                retval += $"({aika},{et},{mt},{s},{j},{o}),";
+            }
+           //remove comma (,) after last row
+           retval = retval.Remove(retval.Length - 1);
+            return retval;
+        }
+        private string MakePenaltySql(List<Penalty> penalties)
+        {
+            string retval = "";
+            foreach (Penalty p in penalties)
+            {
+                string aika = $"'{p.Aika}'";
+                string kesto = $"'{p.Kesto}'";
+                string syy = $"'{p.Syy}'";
+                int henk = p.Henkilo;
+                int j = int.Parse(txtHomeId.Text);
+                int o = gameID;
+                retval += $"({aika},{kesto},{syy},{henk},{j},{o}),";
+            }
+            //remove comma (,) after last row
+            retval = retval.Remove(retval.Length - 1);
+            return retval;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
