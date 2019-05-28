@@ -35,12 +35,11 @@ namespace WpfSalibandyTournament
         {
             Close();
         }
-
         private void BtnNew_Click(object sender, RoutedEventArgs e)
         {
-            
+            WpfGameEditor gameEditor = new WpfGameEditor(this);
+            gameEditor.ShowDialog();
         }
-
         private void btnOpenGame_Click(object sender, RoutedEventArgs e)
         {
             Game selectedGame = (Game)dgGames.SelectedItem;
@@ -48,6 +47,15 @@ namespace WpfSalibandyTournament
             {
                 WpfGamestatistics stats = new WpfGamestatistics(this, selectedGame);
                 stats.ShowDialog();
+            }
+        }
+        private void btnEditGame_Click(object sender, RoutedEventArgs e)
+        {
+            Game selectedGame = (Game)dgGames.SelectedItem;
+            if (selectedGame != null)
+            {
+                WpfGameEditor gameEditor = new WpfGameEditor(this, selectedGame);
+                gameEditor.ShowDialog();
             }
         }
     }

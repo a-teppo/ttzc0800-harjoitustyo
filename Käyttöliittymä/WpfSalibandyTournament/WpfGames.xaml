@@ -6,6 +6,18 @@
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
         Title="Ottelut" MinHeight="400" Width="550" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style x:Key="tfBT" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Paatetty}" Value="True">
+                    <Setter Property="Button.IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Paatetty}" Value="False">
+                    <Setter Property="Button.IsEnabled" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid Background="LightBlue">
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -26,6 +38,13 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="btnOpenGame" Content="Avaa" Click="btnOpenGame_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnEditGame" Style="{StaticResource tfBT}" Content="Muokkaa" Click="btnEditGame_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
