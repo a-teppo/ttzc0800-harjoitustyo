@@ -23,6 +23,7 @@ namespace WpfSalibandyTournament
     public partial class WpfGamestatistics : Window
     {
         //fields
+        private WpfGames gamesWindow;
         private List<Goal> homegoals = new List<Goal>();
         private List<Goal> awaygoals = new List<Goal>();
         private List<Penalty> homepenalties = new List<Penalty>();
@@ -31,12 +32,16 @@ namespace WpfSalibandyTournament
         Stopwatch sw = new Stopwatch();
         private string currentTime = string.Empty;
         private string periodTime = string.Empty;
-        //properties (used in comboboxes)
-        public List<string> Erikoistilanteet { get; set; }
+        private int gameID;
+        private bool gameStatus = false;
+        //properties
+        public List<string> SpecialTeams { get; set; }
+        public List<string> NumberOfPeriods { get; set; }
+        public List<string> PeriodLenghts { get; set; }
         public List<Player> HomePlayers { get; set; }
         public List<Player> AwayPlayers { get; set; }
         //constructors
-        public WpfGamestatistics(Game game)
+        public WpfGamestatistics(WpfGames gamesWindow, Game game)
         {
             InitializeComponent();
             FillCombo(game.KotiId, game.VierasId);
@@ -54,11 +59,26 @@ namespace WpfSalibandyTournament
             dgHomePenalties.ItemsSource = homepenalties;
             dgAwayGoals.ItemsSource = awaygoals;
             dgAwayPenalties.ItemsSource = awaypenalties;
+            gameID = game.OtteluId;
+            gameStatus = game.Paatetty;
+            //disable all controls if game has been ended/saved
+            DisableControls();
+            this.gamesWindow = gamesWindow;
         }
         //methods
-        //Timer
+        //Stopwatch
         private void StartTimer(object sender, RoutedEventArgs e)
         {
+            //disable changing playtime and enable adding goals and penalties once time is running
+            if (lblTimer.Content.ToString() == "00:00")
+            {
+                btnAddHomeGoal.IsEnabled = true;
+                btnAddAwayGoal.IsEnabled = true;
+                btnAddHomePenalty.IsEnabled = true;
+                btnAddAwayPenalty.IsEnabled = true;
+                cmbNumberOfPeriods.IsEnabled = false;
+                cmbPeriodLenght.IsEnabled = false;
+            }
             dt.Interval = TimeSpan.FromSeconds(1);
             dt.Tick += Dt_Tick;
             sw.Start();
@@ -73,8 +93,17 @@ namespace WpfSalibandyTournament
                 lblTimer.Content = currentTime;
                 foreach (var item in ListTime())
                 {
+                    //check timelist and stop stopwatch if end of period
                     if (item == currentTime)
+                    {
                         sw.Stop();
+                        MessageBox.Show("Erä päättyi");
+                    }
+                    //enable end game button at end of last period
+                    if (currentTime == lblTotalTime.Content.ToString())
+                    {
+                        btnEndGame.IsEnabled = true;
+                    }
                 }
             }
         }
@@ -87,21 +116,21 @@ namespace WpfSalibandyTournament
         }
         private void CalculateTotalTime(object sender, RoutedEventArgs e)
         {
-            int periods = int.Parse(txtNumberOfPeriods.Text);
-            int periodlenght = int.Parse(txtPeriodLenght.Text);
+            int periods = int.Parse(cmbNumberOfPeriods.Text);
+            double periodlenght = double.Parse(cmbPeriodLenght.Text);
             lblTotalTime.Content = periods*periodlenght+":00";
         }
-        //List times of all period ends
+        //List times of all period ends, stopwatch stops automatically at the end of each period
         private List<string> ListTime()
         {
             string str = "";
-            int periods = int.Parse(txtNumberOfPeriods.Text);
-            double periodlenght = double.Parse(txtPeriodLenght.Text);
+            int periods = int.Parse(cmbNumberOfPeriods.Text);
+            double periodlenght = double.Parse(cmbPeriodLenght.Text);
             List<string> timelist = new List<string>();
             for (int i = 1; i <= periods; i++)
             {
                 TimeSpan t = TimeSpan.FromMinutes(i * periodlenght);
-                str = String.Format("{0:00}:{1:00}", t.Minutes, t.Seconds);
+                str = String.Format("{0:00}:{1:00}", t.TotalMinutes, t.Seconds);
                 timelist.Add(str);
             }
             lblTotalTime.Content = str;
@@ -110,7 +139,7 @@ namespace WpfSalibandyTournament
         private void AddGoal(object sender, RoutedEventArgs e)
         {
             Button b = e.Source as Button;
-            if (b.Name == "AddHomeGoal")
+            if (b.Name == "btnAddHomeGoal")
             {
                 int index = homegoals.Count;
                 Goal g = new Goal()
@@ -122,7 +151,7 @@ namespace WpfSalibandyTournament
                 dgHomeGoals.ItemsSource = null;
                 dgHomeGoals.ItemsSource = homegoals;
             }
-            else if (b.Name == "AddAwayGoal")
+            else if (b.Name == "btnAddAwayGoal")
             {
                 int index = awaygoals.Count;
                 Goal g = new Goal()
@@ -138,7 +167,7 @@ namespace WpfSalibandyTournament
         private void AddPenalty(object sender, RoutedEventArgs e)
         {
             Button b = e.Source as Button;
-            if (b.Name == "AddHomePenalty")
+            if (b.Name == "btnAddHomePenalty")
             {
                 int index = homepenalties.Count;
                 Penalty p = new Penalty()
@@ -150,7 +179,7 @@ namespace WpfSalibandyTournament
                 dgHomePenalties.ItemsSource = null;
                 dgHomePenalties.ItemsSource = homepenalties;
             }
-            else if (b.Name == "AddHomePenalty")
+            else if (b.Name == "btnAddAwayPenalty")
             {
                 int index = awaypenalties.Count;
                 Penalty p = new Penalty()
@@ -163,11 +192,17 @@ namespace WpfSalibandyTournament
                 dgAwayPenalties.ItemsSource = awaypenalties;
             }
         }
+        //fill all combobox sources
         private void FillCombo(int homeID, int awayID)
         {
-            Erikoistilanteet = new List<string>() { "YV", "AV", "RL" };
-            cmbErikoistilanneKoti.ItemsSource = Erikoistilanteet;
-            cmbErikoistilanneVieras.ItemsSource = Erikoistilanteet;
+            NumberOfPeriods = new List<string>(){ "1", "2","3"};
+            //1 minute period lenght for testing purposes
+            PeriodLenghts = new List<string>(){ "0,1", "10", "15", "20"};
+            SpecialTeams = new List<string>() { "YV", "AV", "RL" };
+            cmbNumberOfPeriods.ItemsSource = NumberOfPeriods;
+            cmbPeriodLenght.ItemsSource = PeriodLenghts;
+            cmbErikoistilanneKoti.ItemsSource = SpecialTeams;
+            cmbErikoistilanneVieras.ItemsSource = SpecialTeams;
             HomePlayers = DBSalibandytournament.GetTeamPlayersFromDB(homeID);
             AwayPlayers = DBSalibandytournament.GetTeamPlayersFromDB(awayID);
             cmbTekijaKoti.ItemsSource = HomePlayers;
@@ -177,23 +212,13 @@ namespace WpfSalibandyTournament
             cmbTekijaVieras.ItemsSource = AwayPlayers;
             cmbSyottajaVieras.ItemsSource = AwayPlayers;
         }
-        //get current indexnumber for goals and penalties when adding new rows
-        private int GetIndex<T>(List<T> data)
-        {
-            int i = 1;
-            foreach (var foo in data)
-            {
-                i++;
-            }
-            return i;
-        }
         private void btnEndGame_Click(object sender, RoutedEventArgs e)
         {
             string goaltable = "Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu)";
             string hgvaluestring = "";
             //string agvaluestring = "";
             //string hpvaluestring = "";
-            //string apvaluwstring = "";
+            //string apvaluestring = "";
             //make string of all goal rows for SQL
             foreach(Goal g in homegoals)
             {
@@ -202,12 +227,35 @@ namespace WpfSalibandyTournament
                 int mt = g.Maalintekija;
                 string s = g.Syottaja == null ?"null":g.Syottaja.ToString();
                 int j = int.Parse(txtHomeId.Text);
-                int o = int.Parse(txtGameId.Text);
+                int o = gameID;
                 hgvaluestring += $"({aika},{et},{mt},{s},{j},{o}),";
             }
             //remove comma (,) after last row
             hgvaluestring = hgvaluestring.Remove(hgvaluestring.Length - 1);
             DBSalibandytournament.InsertIntoDB(goaltable, hgvaluestring);
+            //mark game ended
+            DBSalibandytournament.UpdateDB("Ottelu", "Paatetty = TRUE", $"OtteluID = {gameID}");
+            gameStatus = true;
+            MessageBox.Show("Ottelu on onnistuneesti päätetty.");
+            Close();
         }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (gameStatus == false)
+            {
+                MessageBoxResult result = MessageBox.Show("Ottelua ei ole päätetty (maaleja ja rangaistuksia ei ole tallennettu). Jos suljet ikkunan, tiedot menetetään. Haluatko varmasti sulkea ikkunan?", "Varoitus", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+                if (result == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+            gamesWindow.RefreshGames();
+        }
+        private void DisableControls()
+        {
+            if (gameStatus == true)
+                ccAllControls.IsEnabled = false;
+        }
+        
     }
 }

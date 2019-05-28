@@ -19,8 +19,9 @@
                     <DataGridTextColumn Header="Paikka" Binding="{Binding Path=Paikka}"/>
                     <DataGridTextColumn Header="Kotijoukkue" Binding="{Binding Path=KotiNimi}"/>
                     <DataGridTextColumn Header="Vierasjoukkue" Binding="{Binding Path=VierasNimi}"/>
-                    <DataGridTextColumn Header="Maalit" Binding="{Binding Path=KotiMaalit}"/>
-                    <DataGridTextColumn Header="Maalit" Binding="{Binding Path=VierasMaalit}"/>
+                    <DataGridTextColumn Header="Kotimaalit" Binding="{Binding Path=KotiMaalit}"/>
+                    <DataGridTextColumn Header="Vierasmaalit" Binding="{Binding Path=VierasMaalit}"/>
+                    <DataGridTextColumn Header="Ottelu päätetty" Binding="{Binding Path=Paatetty}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

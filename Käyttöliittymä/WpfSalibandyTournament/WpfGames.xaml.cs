@@ -19,10 +19,15 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfGames : Window
     {
-        private List<Game> games = DBSalibandytournament.GetGamesFromDB();
+        private List<Game> games;
         public WpfGames()
         {
             InitializeComponent();
+            RefreshGames();
+        }
+        public void RefreshGames()
+        {
+            this.games = DBSalibandytournament.GetGamesFromDB();
             dgGames.ItemsSource = games;
         }
 
@@ -41,10 +46,9 @@ namespace WpfSalibandyTournament
             Game selectedGame = (Game)dgGames.SelectedItem;
             if (selectedGame != null)
             {
-                WpfGamestatistics stats = new WpfGamestatistics(selectedGame);
+                WpfGamestatistics stats = new WpfGamestatistics(this, selectedGame);
                 stats.ShowDialog();
             }
-            Close();
         }
     }
 }

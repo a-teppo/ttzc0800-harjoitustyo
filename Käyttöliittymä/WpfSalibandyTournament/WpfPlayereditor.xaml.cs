@@ -57,8 +57,7 @@ namespace WpfSalibandyTournament
             string Position = $"'{txtPosition.Text}'";
             int Birthyear = int.Parse(txtBirthday.Text);
             string Role = $"'{txtRole.Text}'";
-            int TeamID;
-            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out TeamID);
+            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);
             
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
