@@ -21,13 +21,19 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfTeameditor : Window
     {
-        Team team;
-        public WpfTeameditor()
+        private WpfTeams teamsWindow;
+        private Team team;
+
+        public List<Team> Teams { get; set; }
+
+        public WpfTeameditor(WpfTeams teamsWindow)
         {
             InitializeComponent();
+            Teams = DBSalibandytournament.GetTeamsFromDB();
+            this.teamsWindow = teamsWindow;
         }
 
-        public WpfTeameditor(Team team)
+        public WpfTeameditor(WpfTeams teamsWindow, Team team)
         {
             InitializeComponent();
             this.team = team;
@@ -36,6 +42,7 @@ namespace WpfSalibandyTournament
             txtLocation.Text = team.Paikkakunta;
             txtOrganization.Text = team.Seura;
             txtLogofile.Text = team.LogoURL;
+            this.teamsWindow = teamsWindow;
         }
 
         private void btnLogofile_Click(object sender, RoutedEventArgs e)
@@ -68,15 +75,16 @@ namespace WpfSalibandyTournament
                 string updatevaluestring = $"Nimi = {Nimi}, Paikkakunta = {Paikkakunta}, Seura = {Seura}, LogoURL = {LogoURL}";
                 string updatewherestring = $"JoukkueId = {JoukkueId}";
                 DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
-                OpenTeam();
+
             }
             Close();
+            teamsWindow.RefreshTeams();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            OpenTeam();
             Close();
+            teamsWindow.RefreshTeams();
         }
 
         private void OpenTeam()
