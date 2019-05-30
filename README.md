@@ -1,12 +1,18 @@
 # Loppuraportti
 
+### Tekijät:
+
+- Pauliina Heikkilä M3203
+- Kim Närhi M3198
+- Antti Teppo M1467
+
 ## 1. Asennus
 
-Käyttöliittymä/WpfSalibandyTournament/bin/Release
+### Käyttöliittymä/WpfSalibandyTournament/bin/Release
 
 ![](./Kuvat/asennus1_nakyma.png)
  
-Muuta configurointi tiedostoon keltaiset kohdat:
+### Muuta configurointi tiedostoon keltaiset kohdat:
 
 ![](./Kuvat/asennus3_nakyma.png)
 
@@ -19,27 +25,31 @@ Muuta configurointi tiedostoon keltaiset kohdat:
 Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä tuottaa ottelupöytäkirjat. Tulospalvelu sisältää otteluiden tulokset sekä joukkueiden tiedot. Ohjelmasta olisi helppo luoda esimerkiksi seuran jäsenrekisteri.
 
 #### Toteutetut toiminnalliset vaatimukset:
+
 -	Joukkueen lisääminen ja muokkaaminen
 -	Pelaajan lisääminen ja muokkaaminen
 -	Ottelun lisääminen ja muokkaaminen
 -	Ottelupöytäkirjan tuottaminen
 
 #### Toteuttamatta jääneet toiminnalliset vaatimukset:
--	Joukkueiden sarjataulukot, pistepörssi, jäähypörssi yms.
+
+-	Pistepörssi, jäähypörssi
 
 #### Toiminnallisuus joka toteuttiin ohi/yli alkuperäisten vaatimusten:
+
 -	Pelaajan henkilökohtainen pisteseuranta, vaikka pelaaja vaihtaisi joukkuetta
 -	Samoin joukkueen pisteet eivät ole sidottu pelaajaan
+-	Ottelupöytäkirjan ajanotto-ominaisuus sekä ajan hyödyntäminen pöytäkirjan täytössä
 
 #### Ei-toiminnalliset vaatimukset sekä mahdolliset reunaehdot/rajoitukset:
+
 -	useita samanaikaisia käyttäjiä, keskitetty tietokanta
 -	ottelupöytäkirjaa ei voi muokata/käsitellä kuin yksi kerrallaan
 -	käyttäjähallinta (ei toteutettu)
   *  pääkäyttäjä, täydet oikeudet
   *  toimitsija, rajalliset oikeudet (suurin käyttäjäryhmä)
   *  tulospalvelut, katseluoikeus
-	
-	
+
 ## 3. Kuvaruutukaappaukset tärkeimmistä käyttöliittymistä:
 
 ### Päävalikko:
@@ -47,6 +57,7 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
  ![](./Kuvat/kayttoliittyma_nakyma.png)
 
 #### Joukkueet käyttöliittymät:
+
 -	Yleisnäkymässä näkyy automaattisesti kaikki tietokantaan tallennetut joukkueet.
 
 ![](./Kuvat/joukkueet_nakyma.png)
@@ -56,16 +67,19 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
 ![](./Kuvat/joukkue_muokkaus_nakyma.png)
 
 #### Pelaaja / Henkilöt käyttöliittymät:
+
 -	Yleisnäkymässä näkyy automaattisesti kaikki tietokantaan tallennetut pelaajat.
 
 ![](./Kuvat/pelaajat_nakyma.png) 
 
-#### Pelaaja: Lisää / muokkaa 
+#### Pelaaja: Lisää / muokkaa
+
 -	Tähdellä merkityt ovat pakollisia tietoja
 
  ![](./Kuvat/henkilolomake_nakyma.png)
 
 #### Otteluiden käyttöliittymät:
+
 -	Voit muokata vain päättämättömiä otteluita.
 
  ![](./Kuvat/ottelut_nakyma.png) 
@@ -75,6 +89,7 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
   ![](./Kuvat/uusi_ottelu_nakyma.png)
 
 #### Ottelupöytäkirja:
+
 -	Erän pituudeksi voi valita 10 sekuntia testikäyttöä varten.
 -	Ottelun voi päättää vain kokonaisajan päättymisen jälkeen.
 
@@ -103,6 +118,7 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
 -	datan syöttämisen rajoitteet/laadun varmistukset ovat osittain puutteellisia
 
 #### Jatkokehitysideat:
+
 -	Erilaiset käyttäjäryhmät ja niille omat oikeudet
 -	Turnausmuodosta mahdollisuus myös sarjamuotoihin
 -	Ottelukaavioiden luominen automaattisesti
@@ -117,6 +133,7 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
 ## 6. Mitä opittu, mitkä olivat suurimmat haasteet, mitä kannattaisi tutkia/opiskella lisää jne
 
 #### Opit: 
+
 -	yhdessä tekeminen tuottaa paljon oppimista => pitää pyrkiä hyödyntämään myös jatko-opiskeluissa!
 -	tietueiden järkevä muoto/tyypitys, jolla vältetään turhaa parserointia.
 -	tietokannan pitää olla oikein toteutettu, jotta lopputulos voi toimia
@@ -126,22 +143,31 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
 -	ohjelman kehittäminen on jatkuvaa
 
 #### Haasteet:
+
 -	kurssiin sopivan kokonaisuuden hahmottaminen
 -	ohjelman kehittämiselle ei näy loppua, mihin vetää rajan?
 -	toisen tekemän koodin ymmärtäminen voi olla haastavaa
 -	tekijöiden erilaiset lähtötasot
 
 #### Lisäselvitykseen:
+
 -	Käyttäjän hallinnan luominen
 
 ## 7. Tekijät, vastuiden ja työmäärän jakautuminen
 
--	Ryhmätyötä tehtiin fyysisesti samassa paikassa 6 kertaa 4-5 tuntia / kerta. Tämä todettiin erittäin onnistuneeksi ratkaisuksi oppimisen, edistymisen sekä tasaisemman työnjaon osalta. Yhteisien tapaamisten jälkeen sovittiin aina tehtävät ennen seuraavaa tapaamista. Hyväksi malliksi todettiin näytön jakaminen isommalle näytölle tai seinälle, jolloin kaikki pääsivät kiinni, mistä kohdasta milloinkin puhutaan.
+-	Ryhmätyötä tehtiin fyysisesti samassa paikassa 6 kertaa, 4-6 tuntia / kerta. Tämä todettiin erittäin onnistuneeksi ratkaisuksi oppimisen, edistymisen sekä tasaisemman työnjaon osalta. Yhteisien tapaamisten jälkeen sovittiin aina tehtävät ennen seuraavaa tapaamista. Hyväksi malliksi todettiin näytön jakaminen isommalle näytölle tai seinälle, jolloin kaikki pääsivät kiinni, mistä kohdasta milloinkin puhutaan.
 -	Ryhmätyön tekemisessä hyödynnettiin GitLab -sovellusta ja sinne pushattiin sekä commitoitiin erityisesti tapaamisten väleissä.
 -	Ryhmätyön onnistumisen kannalta Pauliinan osaaminen oli kaiken pohja. Kim ja Antti vastasivat helpommista ja selkeämmistä kokonaisuuksista, kuten käyttöliittymien näkymistä. Yhdessä sitten ratkottiin koodiin nousseita haasteita/ongelmia ja niiden ratkomisessa Pauliina oli korvaamaton.
 -	Tehtävien selkeä jakaminen oli haasteellista, koska ryhmässä taitotasot olivat erilaiset.
 
 
 ## 8. Tekijöiden ehdotus arvosanaksi, ja perustelut sille
-- Pauliinalle 5
-- Pojille 3
+
+- Harjoitustyön sisältö kasvoi alustavaa suunnitelmaa laajemmaksi.
+- Suunnitteluun olisi pitänyt käyttää enemmän aikaa, jotta työmäärä ei olisi kasvanut niin suureksi ja olisi ollut selkeämmin toteutettavissa.
+  * Käyttöliittymän harjoitustyön pohjana käytettiin tietokantakurssin harjoitustyötä emmekä tehneet riittävää suunnittelua käyttöliittymän näkökulmasta. Tämä johti siihen, että jouduimme muokkamaan tietokannan rakennetta, tietotyyppejä yms.
+  * Lisäsi työnmäärää mutta samalla saimme paljon oppia kokonaisuuksien hahmottamisesta
+- Toiminnallisuuksia toteutettiin suunnitelman mukaan ja muutama tuli lisää.
+
+Arvosana ehdotus: 4
+
