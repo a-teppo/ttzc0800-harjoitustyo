@@ -54,9 +54,9 @@ namespace WpfSalibandyTournament
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
         {
-            if (!FillOK())
+            if (FillOK() != "ok")
             {
-                MessageBox.Show("Täytä kaikki tähdellä merkityt kentät ennen tallentamista.");
+                MessageBox.Show(FillOK());
                 return;
             }
             string Lastname = $"'{txtLastname.Text}'";
@@ -85,11 +85,19 @@ namespace WpfSalibandyTournament
             Close();
             playerWindow.RefreshPlayers();
         }      
-        private bool FillOK()
+        private string FillOK()
         {
-            if(txtLastname.Text !="" && txtFirstname.Text !="" && txtPlayernumber.Text !="" && cmbTeams.SelectedValue != null)
-                return true;
-            return false;
+
+            if (txtLastname.Text == "" || txtFirstname.Text == "" || txtPlayernumber.Text == "" || cmbTeams.SelectedValue == null)
+                return "Täytä kaikki tähdellä merkityt kohdat ennen tallentamista.";
+            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);
+            List<Player> players = DBSalibandytournament.GetTeamPlayersFromDB(TeamID);
+            foreach(Player p in players)
+            {
+                if (txtPlayernumber.Text == p.Pelinumero)
+                return $"Pelinumero on jo käytössä joukkueessa {cmbTeams.Text}.";
+            }
+            return "ok";
         }
     }
 }
