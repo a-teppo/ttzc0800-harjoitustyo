@@ -11,7 +11,7 @@ CREATE TABLE Henkilot (
 	Sukunimi VARCHAR(50),
 	Etunimi VARCHAR(50),
 	Pelinumero TINYINT,
-	Pelipaikka CHAR(2) CHECK (Pelipaikka IN (MV,PL,HY)),
+	Pelipaikka VARCHAR(20),
 	Syntymavuosi SMALLINT,
 	Rooli VARCHAR(10),
     JoukkueID smallint,
@@ -41,7 +41,7 @@ CREATE TABLE Ottelu (
 CREATE TABLE Maali (
 	MaaliID SMALLINT PRIMARY KEY auto_increment,
 	Aika VARCHAR(5),
-	Erikoistilanne CHAR(2) CHECK (Erikoistilanne IN (AV,YV,RL)),
+	Erikoistilanne CHAR(2) CHECK (Erikoistilanne IN (AV,YV,RL,TM)),
     Maalintekija smallint NOT NULL,
     Syottaja smallint,
     Joukkue smallint NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE Maali (
 
 CREATE TABLE Rangaistus (
 	RangaistusID SMALLINT PRIMARY KEY auto_increment,
-	Aika DATETIME NOT NULL,
+	Aika VARCHAR(5),
 	Kesto TINYINT NOT NULL,
 	Syy VARCHAR(20) NOT NULL,
     Henkilo smallint NOT NULL,
