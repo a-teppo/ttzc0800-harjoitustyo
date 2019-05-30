@@ -15,11 +15,11 @@ Käytä Käynnistä- ja Pysäytä-painikkeita ajanottoon. Maalien ja rangaistuks
 * Valitse maalille erikoistilannekoodi tarvittaessa. 
 * Syötä rangaistukselle kesto (kokonaisluku) ja syy (vapaa kenttä).
 
-**Pakolliset kentät maalille:** Aika, Tekijä
+**Pakolliset kentät maalille:** Aika, Tekijä (jos maalilla on syöttäjä, tulee syöttäjän olle eri kuin Tekijä)
 
 **Pakolliset kentät rangaistukselle:** Aika, Kärsijä, Kesto, Syy
 
-**Huom!** Lomakkeella ei ole vielä tarkistusta pakollisten kenttien syöttämiselle, joten käyttäjän tulee tarkistaa, että kaikki pakolliset tiedot on täytetty.
+**Huom!** Lomakkeella ei ole vielä tarkistusta pakollisten kenttien syöttämiselle, joten käyttäjän tulee tarkistaa, että kaikki pakolliset tiedot on täytetty. Mikäli pakollisia kenttiä puuttuu, ottelun päättäminen/tallentaminen epäonnistuu.
 
 ## Ottelun päättäminen
 Ottelun voi päättää vasta kun peliaika on kulunut loppuun. Ennen ottelun päättämistä, tarkista, että kaikilla riveillä on pakolliset kentät täytettynä.
