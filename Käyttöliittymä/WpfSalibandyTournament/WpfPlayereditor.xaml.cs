@@ -104,7 +104,7 @@ namespace WpfSalibandyTournament
             List<Player> players = DBSalibandytournament.GetTeamPlayersFromDB(TeamID);
             foreach (Player p in players)
             {
-                if (txtPlayernumber.Text == p.Pelinumero)
+                if (txtPlayernumber.Text == p.Pelinumero && txtID.Text != p.HenkiloId.ToString())
                     return $"Pelinumero on jo käytössä joukkueessa {cmbTeams.Text}.";
             }
             return "ok";
