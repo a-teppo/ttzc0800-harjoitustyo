@@ -9,13 +9,13 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left" Background="LightBlue" Width="100">
             <TextBlock Text="ID:" Height="20" Margin="5 15 5 0"/>
-            <TextBlock Text="Sukunimi:" Height="20" Margin="5"/>
-            <TextBlock Text="Etunimi:" Height="20" Margin="5"/>
-            <TextBlock Text="Pelinumero:" Height="20" Margin="5"/>
+            <TextBlock Text="Sukunimi(*):" Height="20" Margin="5"/>
+            <TextBlock Text="Etunimi(*):" Height="20" Margin="5"/>
+            <TextBlock Text="Pelinumero(*):" Height="20" Margin="5"/>
             <TextBlock Text="Pelipaikka:" Height="20" Margin="5"/>
             <TextBlock Text="Syntymävuosi:" Height="20" Margin="5"/>
             <TextBlock Text="Rooli:" Height="20" Margin="5"/>
-            <TextBlock Text="Joukkue:" Height="20" Margin="5"/>
+            <TextBlock Text="Joukkue(*):" Height="25" Margin="5"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Background="LightBlue" Width="200" >
             <TextBlock x:Name="txtID" Height="20" Margin="5 15 5 0"/>
@@ -25,7 +25,7 @@
             <TextBox x:Name="txtPosition" Height="20" Margin="5"/>
             <TextBox x:Name="txtBirthday" Height="20" Margin="5"/>
             <TextBox x:Name="txtRole" Height="20" Margin="5"/>             
-            <ComboBox x:Name="cmbTeams" Height="20" Margin="5" Background="LightBlue" DisplayMemberPath="Nimi" SelectedValuePath="JoukkueId" />
+            <ComboBox x:Name="cmbTeams" Height="25" Margin="5" Background="LightBlue" DisplayMemberPath="Nimi" SelectedValuePath="JoukkueId" />
 
             <Button x:Name="btnSavePerson" Content="Tallenna" Height="20" Width="100" Margin="0 30 0 5" Click="btnSavePerson_Click" />
             <Button x:Name="btnCancel" Content="Peruuta" Height="20" Width="100" Margin="0 5 0 5" Click="BtnCancel_Click"/>

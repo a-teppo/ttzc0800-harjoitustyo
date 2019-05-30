@@ -54,11 +54,16 @@ namespace WpfSalibandyTournament
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
         {
+            if (!FillOK())
+            {
+                MessageBox.Show("Täytä kaikki tähdellä merkityt kentät ennen tallentamista.");
+                return;
+            }
             string Lastname = $"'{txtLastname.Text}'";
             string Firstname = $"'{txtFirstname.Text}'";
             string Playernumber = $"'{txtPlayernumber.Text}'";
             string Position = $"'{txtPosition.Text}'";
-            int Birthyear = int.Parse(txtBirthday.Text);
+            string Birthyear = txtBirthday.Text == ""? "NULL" : txtBirthday.Text;
             string Role = $"'{txtRole.Text}'";
             bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);             
             if (string.IsNullOrWhiteSpace(txtID.Text))
@@ -80,5 +85,11 @@ namespace WpfSalibandyTournament
             Close();
             playerWindow.RefreshPlayers();
         }      
+        private bool FillOK()
+        {
+            if(txtLastname.Text !="" && txtFirstname.Text !="" && txtPlayernumber.Text !="" && cmbTeams.SelectedValue != null)
+                return true;
+            return false;
+        }
     }
 }
