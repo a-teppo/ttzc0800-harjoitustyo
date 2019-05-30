@@ -19,15 +19,17 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfPlayereditor : Window
     {
+        private WpfPlayers playerWindow;
         public List<Team> Teams { get; set; }
         Player player;
-        public WpfPlayereditor()
+        public WpfPlayereditor(WpfPlayers playerWindow)
         {
             InitializeComponent();
             Teams = DBSalibandytournament.GetTeamsFromDB();
             cmbTeams.ItemsSource = Teams;
+            this.playerWindow = playerWindow;
         }
-        public WpfPlayereditor(Player player)
+        public WpfPlayereditor(WpfPlayers playerWindow, Player player)
         {
             InitializeComponent();
             this.player = player;
@@ -41,12 +43,13 @@ namespace WpfSalibandyTournament
             cmbTeams.SelectedValue = player.JoukkueId;
             Teams = DBSalibandytournament.GetTeamsFromDB();
             cmbTeams.ItemsSource = Teams;
+            this.playerWindow = playerWindow;
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            OpenPlayers();
+        {            
             Close();
+            playerWindow.RefreshPlayers();
         }
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
@@ -56,7 +59,7 @@ namespace WpfSalibandyTournament
             string Playernumber = $"'{txtPlayernumber.Text}'";
             string Position = $"'{txtPosition.Text}'";
             int Birthyear = int.Parse(txtBirthday.Text);
-            string Role = $"'{txtRole.Text}'";
+            string Role = $"'{txtRole.Text}'";           
             bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);
             
             if (string.IsNullOrWhiteSpace(txtID.Text))
@@ -64,6 +67,7 @@ namespace WpfSalibandyTournament
                 string inserttablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
                 string insertvaluestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
                 DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+                playerWindow.RefreshPlayers();
             }
             else
             {
@@ -72,14 +76,10 @@ namespace WpfSalibandyTournament
                 string updatevaluestring = $"Sukunimi = {Lastname}, Etunimi = {Firstname}, Pelinumero = {Playernumber}, Pelipaikka = {Position}, Syntymavuosi = {Birthyear}, Rooli = {Role}, JoukkueID = {TeamID}";
                 string updatewherestring = $"HenkiloID = {PersonID}";
                 DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
-                OpenPlayers();
+                playerWindow.RefreshPlayers();
             }
             Close();
-        }
-        private void OpenPlayers()
-        {
-            WpfPlayers players = new WpfPlayers();
-            players.Show();
-        }
+            playerWindow.RefreshPlayers();
+        }      
     }
 }
