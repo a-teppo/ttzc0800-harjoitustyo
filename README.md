@@ -88,13 +88,13 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
  
 ### Luontiskriptit ja testidatan lisäysskriptit:
  
-![](./SQL/CreateSalibandyDatabase.sql "Taulujen ja näkymien luonti tietokantaan")
+[Taulujen ja näkymien luonti tietokantaan](./SQL/CreateSalibandyDatabase.sql)
 
-![](./SQL/InsertValuesToSalibandyDatabase.sql "Testidatan lisäys tietokantaan")
+[Testidatan lisäys tietokantaan](./SQL/InsertValuesToSalibandyDatabase.sql)
 
 #### Huomioitavaa käytössä:
 
-![](./poytakirja_kayttoohje.md "Katso otteluohjelman käyttöohje")
+[Katso otteluohjelman käyttöohje](./poytakirja_kayttoohje.md)
 
 ## 5. Tiedossa olevat ongelmat ja bugit sekä jatkokehitysideat
 
