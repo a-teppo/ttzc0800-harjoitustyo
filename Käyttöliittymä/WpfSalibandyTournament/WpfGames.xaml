@@ -21,8 +21,8 @@
     <Grid Background="LightBlue">
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="btnNew" Content="Uusi ottelu" Width="75" Margin="5 2" Click="BtnNew_Click" />
-                <Button x:Name="btnClose" Content="Sulje" Width="75" Margin="5 2" Click="BtnClose_Click"/>
+                <Button x:Name="btnNew" Content="Uusi ottelu" Width="75" Margin="5 2" Click="btnNew_Click" />
+                <Button x:Name="btnClose" Content="Sulje" Width="75" Margin="5 2" Click="btnClose_Click"/>
             </StackPanel>
             <DataGrid x:Name="dgGames" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="350" Margin="5 0">
                 <DataGrid.Columns>

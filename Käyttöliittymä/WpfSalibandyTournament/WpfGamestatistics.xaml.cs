@@ -138,58 +138,72 @@ namespace WpfSalibandyTournament
         }
         private void AddGoal(object sender, RoutedEventArgs e)
         {
-            Button b = e.Source as Button;
-            if (b.Name == "btnAddHomeGoal")
+            try
             {
-                int index = homegoals.Count;
-                Goal g = new Goal()
+                Button b = e.Source as Button;
+                if (b.Name == "btnAddHomeGoal")
                 {
-                    Maalinro = ++index,
-                    Aika = currentTime
-                };
-                homegoals.Add(g);
-                dgHomeGoals.ItemsSource = null;
-                dgHomeGoals.ItemsSource = homegoals;
+                    int index = homegoals.Count;
+                    Goal g = new Goal()
+                    {
+                        Maalinro = ++index,
+                        Aika = currentTime
+                    };
+                    homegoals.Add(g);
+                    dgHomeGoals.ItemsSource = null;
+                    dgHomeGoals.ItemsSource = homegoals;
+                }
+                else if (b.Name == "btnAddAwayGoal")
+                {
+                    int index = awaygoals.Count;
+                    Goal g = new Goal()
+                    {
+                        Maalinro = ++index,
+                        Aika = currentTime
+                    };
+                    awaygoals.Add(g);
+                    dgAwayGoals.ItemsSource = null;
+                    dgAwayGoals.ItemsSource = awaygoals;
+                }
             }
-            else if (b.Name == "btnAddAwayGoal")
+            catch (Exception ex)
             {
-                int index = awaygoals.Count;
-                Goal g = new Goal()
-                {
-                    Maalinro = ++index,
-                    Aika = currentTime
-                };
-                awaygoals.Add(g);
-                dgAwayGoals.ItemsSource = null;
-                dgAwayGoals.ItemsSource = awaygoals;
+                MessageBox.Show("Tapahtui virhe: " + ex.ToString());
             }
         }
         private void AddPenalty(object sender, RoutedEventArgs e)
         {
-            Button b = e.Source as Button;
-            if (b.Name == "btnAddHomePenalty")
+            try
             {
-                int index = homepenalties.Count;
-                Penalty p = new Penalty()
+                Button b = e.Source as Button;
+                if (b.Name == "btnAddHomePenalty")
                 {
-                    Rangaistusnro = ++index,
-                    Aika = currentTime
-                };
-                homepenalties.Add(p);
-                dgHomePenalties.ItemsSource = null;
-                dgHomePenalties.ItemsSource = homepenalties;
+                    int index = homepenalties.Count;
+                    Penalty p = new Penalty()
+                    {
+                        Rangaistusnro = ++index,
+                        Aika = currentTime
+                    };
+                    homepenalties.Add(p);
+                    dgHomePenalties.ItemsSource = null;
+                    dgHomePenalties.ItemsSource = homepenalties;
+                }
+                else if (b.Name == "btnAddAwayPenalty")
+                {
+                    int index = awaypenalties.Count;
+                    Penalty p = new Penalty()
+                    {
+                        Rangaistusnro = ++index,
+                        Aika = currentTime
+                    };
+                    awaypenalties.Add(p);
+                    dgAwayPenalties.ItemsSource = null;
+                    dgAwayPenalties.ItemsSource = awaypenalties;
+                }
             }
-            else if (b.Name == "btnAddAwayPenalty")
+            catch (Exception ex)
             {
-                int index = awaypenalties.Count;
-                Penalty p = new Penalty()
-                {
-                    Rangaistusnro = ++index,
-                    Aika = currentTime
-                };
-                awaypenalties.Add(p);
-                dgAwayPenalties.ItemsSource = null;
-                dgAwayPenalties.ItemsSource = awaypenalties;
+                MessageBox.Show("Tapahtui virhe: " + ex.ToString());
             }
         }
         //fill all combobox sources
@@ -216,11 +230,13 @@ namespace WpfSalibandyTournament
         {
             try
             {
+                //add goals to database
                 string goaltable = "Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu)";
                 if (homegoals.Count > 0)
                     DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(homegoals, int.Parse(txtHomeId.Text)));
                 if (awaygoals.Count > 0)
                     DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(awaygoals, int.Parse(txtAwayId.Text)));
+                //add penalties to database
                 string penaltytable = "Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu)";
                 if (homepenalties.Count > 0)
                     DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(homepenalties, int.Parse(txtHomeId.Text)));
@@ -234,7 +250,7 @@ namespace WpfSalibandyTournament
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Tapahtui virhe: " + ex.ToString());
             }
         }
         private string MakeGoalSql(List<Goal> goals, int team)

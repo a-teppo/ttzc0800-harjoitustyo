@@ -54,36 +54,46 @@ namespace WpfSalibandyTournament
 
         private void btnSavePerson_Click(object sender, RoutedEventArgs e)
         {
-            if (FillOK() != "ok")
+            try
             {
-                MessageBox.Show(FillOK());
-                return;
-            }
-            string Lastname = $"'{txtLastname.Text}'";
-            string Firstname = $"'{txtFirstname.Text}'";
-            string Playernumber = $"'{txtPlayernumber.Text}'";
-            string Position = $"'{txtPosition.Text}'";
-            string Birthyear = txtBirthday.Text == ""? "NULL" : txtBirthday.Text;
-            string Role = $"'{txtRole.Text}'";
-            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);             
-            if (string.IsNullOrWhiteSpace(txtID.Text))
-            {
-                string inserttablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
-                string insertvaluestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
-                DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+                //check that all info is correctly filled in
+                if (FillOK() != "ok")
+                {
+                    MessageBox.Show(FillOK());
+                    return;
+                }
+                string Lastname = $"'{txtLastname.Text}'";
+                string Firstname = $"'{txtFirstname.Text}'";
+                string Playernumber = $"'{txtPlayernumber.Text}'";
+                string Position = $"'{txtPosition.Text}'";
+                string Birthyear = txtBirthday.Text == "" ? "NULL" : txtBirthday.Text;
+                string Role = $"'{txtRole.Text}'";
+                bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);
+                //if saving new person
+                if (string.IsNullOrWhiteSpace(txtID.Text))
+                {
+                    string inserttablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";
+                    string insertvaluestring = $"({Lastname}, {Firstname}, {Playernumber}, {Position}, {Birthyear}, {Role}, {TeamID})";
+                    DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+                    playerWindow.RefreshPlayers();
+                }
+                //if updating existing person
+                else
+                {
+                    int PersonID = int.Parse(txtID.Text);
+                    string updatetablestring = "Henkilot";
+                    string updatevaluestring = $"Sukunimi = {Lastname}, Etunimi = {Firstname}, Pelinumero = {Playernumber}, Pelipaikka = {Position}, Syntymavuosi = {Birthyear}, Rooli = {Role}, JoukkueID = {TeamID}";
+                    string updatewherestring = $"HenkiloID = {PersonID}";
+                    DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
+                    playerWindow.RefreshPlayers();
+                }
+                Close();
                 playerWindow.RefreshPlayers();
             }
-            else
+            catch (Exception ex)
             {
-                int PersonID = int.Parse(txtID.Text);
-                string updatetablestring = "Henkilot";
-                string updatevaluestring = $"Sukunimi = {Lastname}, Etunimi = {Firstname}, Pelinumero = {Playernumber}, Pelipaikka = {Position}, Syntymavuosi = {Birthyear}, Rooli = {Role}, JoukkueID = {TeamID}";
-                string updatewherestring = $"HenkiloID = {PersonID}";
-                DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
-                playerWindow.RefreshPlayers();
+                MessageBox.Show("Tapahtui virhe: " + ex.ToString());
             }
-            Close();
-            playerWindow.RefreshPlayers();
         }      
         private string FillOK()
         {

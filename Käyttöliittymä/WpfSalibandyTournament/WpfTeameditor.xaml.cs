@@ -21,11 +21,12 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfTeameditor : Window
     {
+        //fields
         private WpfTeams teamsWindow;
         private Team team;
-
+        //properties
         public List<Team> Teams { get; set; }
-
+        //constructors
         public WpfTeameditor(WpfTeams teamsWindow)
         {
             InitializeComponent();
@@ -44,18 +45,20 @@ namespace WpfSalibandyTournament
             txtLogofile.Text = team.LogoURL;
             this.teamsWindow = teamsWindow;
         }
-
+        //methods
         private void btnLogofile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = "c:\\";
+            OpenFileDialog dlg = new OpenFileDialog()
+            {
+                InitialDirectory = "c:\\"
+            };
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
-              txtLogofile.Text = dlg.FileName;
+                txtLogofile.Text = dlg.FileName;
         }
-
         private void btnSaveTeam_Click(object sender, RoutedEventArgs e)
         {
+            //check that all info is filled in
             if (!FillOK())
             {
                 MessageBox.Show("Täytä kaikki tähdellä merkityt kentät ennen tallentamista.");
@@ -65,13 +68,14 @@ namespace WpfSalibandyTournament
             string Paikkakunta = $"'{txtLocation.Text}'";
             string Seura = $"'{txtOrganization.Text}'";
             string LogoURL = $"'{txtLogofile.Text}'";
-
+            //if saving new team
             if (string.IsNullOrWhiteSpace(txtTeamID.Text))
             {
                 string inserttablestring = "Joukkue (Nimi, Paikkakunta, Seura, LogoURL)";
                 string insertvaluestring = $"({Nimi}, {Paikkakunta}, {Seura}, {LogoURL})";
                 DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
             }
+            //if updating existing team
             else
             {
                 int JoukkueId = int.Parse(txtTeamID.Text);
@@ -84,7 +88,6 @@ namespace WpfSalibandyTournament
             Close();
             teamsWindow.RefreshTeams();
         }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();

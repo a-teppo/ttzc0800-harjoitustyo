@@ -30,7 +30,8 @@ namespace WpfSalibandyTournament
             InitializeComponent();
             FillCombo();
             this.gamesWindow = gamesWindow;
-            txtTime.Text = DateTime.Now.ToString("d.M.yyyy HH.00.00");
+            //if new game, default start time is now
+            txtTime.Text = DateTime.Now.ToString();
         }
         public WpfGameEditor(WpfGames gamesWindow, Game game)
         {
@@ -53,33 +54,42 @@ namespace WpfSalibandyTournament
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (FillOK() != "ok")
+            try
             {
-                MessageBox.Show(FillOK());
-                return;
+                if (FillOK() != "ok")
+                {
+                    MessageBox.Show(FillOK());
+                    return;
+                }
+                //convert time textbox to the right format for SQL
+                DateTime date = Convert.ToDateTime(txtTime.Text);
+                string Time = $"'{date.ToString("yyyy-MM-dd HH:mm:ss")}'";
+                string Location = $"'{txtLocation.Text}'";
+                bool parseokHome = Int32.TryParse(cmbHomeTeam.SelectedValue.ToString(), out int HomeTeamID);
+                bool parseokAway = Int32.TryParse(cmbAwayTeam.SelectedValue.ToString(), out int AwayTeamID);
+                //if saving new game
+                if (string.IsNullOrWhiteSpace(txtID.Text))
+                {
+                    string inserttablestring = "Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue, Paatetty)";
+                    string insertvaluestring = $"({Time}, {Location}, {HomeTeamID}, {AwayTeamID}, FALSE)";
+                    DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+                }
+                //if updating existing game
+                else
+                {
+                    int GameID = int.Parse(txtID.Text);
+                    string updatetablestring = "Ottelu";
+                    string updatevaluestring = $"Aika = {Time}, Paikka = {Location}, Kotijoukkue = {HomeTeamID}, Vierasjoukkue = {AwayTeamID}";
+                    string updatewherestring = $"OtteluID = {GameID}";
+                    DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
+                }
+                Close();
+                gamesWindow.RefreshGames();
             }
-            DateTime date = Convert.ToDateTime(txtTime.Text);
-            string Time = $"'{date.ToString("yyyy-MM-dd HH:mm:ss")}'";
-            string Location = $"'{txtLocation.Text}'";
-            bool parseokHome = Int32.TryParse(cmbHomeTeam.SelectedValue.ToString(), out int HomeTeamID);
-            bool parseokAway = Int32.TryParse(cmbAwayTeam.SelectedValue.ToString(), out int AwayTeamID);
-
-            if (string.IsNullOrWhiteSpace(txtID.Text))
+            catch (Exception ex)
             {
-                string inserttablestring = "Ottelu (Aika, Paikka, Kotijoukkue, Vierasjoukkue, Paatetty)";
-                string insertvaluestring = $"({Time}, {Location}, {HomeTeamID}, {AwayTeamID}, FALSE)";
-                DBSalibandytournament.InsertIntoDB(inserttablestring, insertvaluestring);
+                MessageBox.Show("Tapahtui virhe: " + ex.ToString());
             }
-            else
-            {
-                int GameID = int.Parse(txtID.Text);
-                string updatetablestring = "Ottelu";
-                string updatevaluestring = $"Aika = {Time}, Paikka = {Location}, Kotijoukkue = {HomeTeamID}, Vierasjoukkue = {AwayTeamID}";
-                string updatewherestring = $"OtteluID = {GameID}";
-                DBSalibandytournament.UpdateDB(updatetablestring, updatevaluestring, updatewherestring);
-            }
-            Close();
-            gamesWindow.RefreshGames();
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -89,6 +99,7 @@ namespace WpfSalibandyTournament
         {
             if (cmbAwayTeam.Text == cmbHomeTeam.Text)
                 return "Koti- ja vierasjoukkue ei voi olla sama.";
+            //check that all required info is filled in
             if (txtTime.Text == "" || txtLocation.Text == "" || cmbHomeTeam.SelectedValue == null || cmbAwayTeam.SelectedValue == null)
                 return "Täytä kaikki tähdellä merkityt kentät ennen tallentamista.";
             else

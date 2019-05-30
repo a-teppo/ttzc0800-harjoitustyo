@@ -19,18 +19,17 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfPlayers : Window
     {
-        private List<Player> players { get; set; }       
+        private List<Player> Players { get; set; }
         public WpfPlayers()
         {
             InitializeComponent();
             //show playerlist in datagrid
             RefreshPlayers();
-            
         }
         public void RefreshPlayers()
         {
-            this.players = DBSalibandytournament.GetPlayersFromDB();
-            dgPlayers.ItemsSource = players;
+            this.Players = DBSalibandytournament.GetPlayersFromDB();
+            dgPlayers.ItemsSource = Players;
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -39,12 +38,12 @@ namespace WpfSalibandyTournament
         private void btnNewperson_Click(object sender, RoutedEventArgs e)
         {
             WpfPlayereditor playereditor = new WpfPlayereditor(this);
-            playereditor.ShowDialog();            
+            playereditor.ShowDialog();
         }
         private void btnEditPerson_Click(object sender, RoutedEventArgs e)
         {
             Player selectedPlayer = (Player)dgPlayers.SelectedItem;
-            if(selectedPlayer != null)
+            if (selectedPlayer != null)
             {
                 WpfPlayereditor playereditor = new WpfPlayereditor(this, selectedPlayer);
                 playereditor.ShowDialog();

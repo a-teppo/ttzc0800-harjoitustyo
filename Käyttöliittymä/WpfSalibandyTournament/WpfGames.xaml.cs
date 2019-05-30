@@ -31,11 +31,11 @@ namespace WpfSalibandyTournament
             dgGames.ItemsSource = games;
         }
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-        private void BtnNew_Click(object sender, RoutedEventArgs e)
+        private void btnNew_Click(object sender, RoutedEventArgs e)
         {
             WpfGameEditor gameEditor = new WpfGameEditor(this);
             gameEditor.ShowDialog();

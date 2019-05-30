@@ -19,32 +19,30 @@ namespace WpfSalibandyTournament
     /// </summary>
     public partial class WpfTeams : Window
     {
+        //properties
         private List<Team> Teams { get; set; }
-
+        //constructors
         public WpfTeams()
         {
             InitializeComponent();
             Teams = DBSalibandytournament.GetTeamsFromDB();
             RefreshTeams();
         }
-
+        //methods
         public void RefreshTeams()
         {
             this.Teams = DBSalibandytournament.GetTeamsFromDB();
             dgTeams.ItemsSource = Teams;
         }
-
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
         private void btnNewteam_Click(object sender, RoutedEventArgs e)
         {
             WpfTeameditor teameditor = new WpfTeameditor(this);
             teameditor.ShowDialog();
         }
-
         private void BtnEditteam_Click(object sender, RoutedEventArgs e)
         {
             Team selectedTeam = (Team)dgTeams.SelectedItem;
@@ -54,8 +52,6 @@ namespace WpfSalibandyTournament
                 teameditor.ShowDialog();
             }
             RefreshTeams();
-            
         }
     }
-
 }

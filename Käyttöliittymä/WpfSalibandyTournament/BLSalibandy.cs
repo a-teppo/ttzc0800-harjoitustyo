@@ -17,7 +17,7 @@ namespace WpfSalibandyTournament
             foreach (DataRow item in dt.Rows)
             {
                 Player player = new Player()
-                { 
+                {
                     HenkiloId = int.Parse(item[0].ToString()),
                     Sukunimi = item[1].ToString(),
                     Etunimi = item[2].ToString(),
@@ -165,7 +165,7 @@ namespace WpfSalibandyTournament
         public string Seura { get; set; }
         public string LogoURL { get; set; }
     }
-     public class Game
+    public class Game
     {
         public int OtteluId { get; set; }
         public string Aika { get; set; }
