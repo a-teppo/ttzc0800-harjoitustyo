@@ -3,12 +3,15 @@
 ## 1. Asennus
 
 Käyttöliittymä/WpfSalibandyTournament/bin/Release
+
 ![](./Kuvat/asennus1_nakyma.png)
  
 Muuta configurointi tiedostoon keltaiset kohdat:
+
 ![](./Kuvat/asennus3_nakyma.png)
 
 ### Avaa release tiedosto:
+
 ![](./Kuvat/asennus3_nakyma.png)
 
 ## 2. Tietoa ohjelmasta
@@ -40,50 +43,61 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
 ## 3. Kuvaruutukaappaukset tärkeimmistä käyttöliittymistä:
 
 ### Päävalikko:
+
  ![](./Kuvat/kayttoliittyma_nakyma.png)
 
 #### Joukkueet käyttöliittymät:
 -	Yleisnäkymässä näkyy automaattisesti kaikki tietokantaan tallennetut joukkueet.
+
 ![](./Kuvat/joukkueet_nakyma.png)
 
 -	Tähdellä merkityt ovat pakollisia tietoja
+
 ![](./Kuvat/joukkue_muokkaus_nakyma.png)
 
 #### Pelaaja / Henkilöt käyttöliittymät:
 -	Yleisnäkymässä näkyy automaattisesti kaikki tietokantaan tallennetut pelaajat.
+
 ![](./Kuvat/pelaajat_nakyma.png) 
 
 #### Pelaaja: Lisää / muokkaa 
 -	Tähdellä merkityt ovat pakollisia tietoja
+
  ![](./Kuvat/henkilolomake_nakyma.png)
 
 #### Otteluiden käyttöliittymät:
 -	Voit muokata vain päättämättömiä otteluita.
+
  ![](./Kuvat/ottelut_nakyma.png) 
 
 #### Uusi ottelu:
+
   ![](./Kuvat/uusi_ottelu_nakyma.png)
 
 #### Ottelupöytäkirja:
 -	Erän pituudeksi voi valita 10 sekuntia testikäyttöä varten.
 -	Ottelun voi päättää vain kokonaisajan päättymisen jälkeen.
+
 ![](./kuvat/ottelupoytakirja_nakyma.png)
 
 ## 4. Ohjelman tarvitsemat /mukana tulevat tiedostot/tietokannat
 
 ### Tietokannan ER-kaavio
+
  ![](./Kuvat/ER_tietokanta_nakyma.png)
  
 ### Luontiskriptit ja testidatan lisäysskriptit:
   
 
 #### Huomioitavaa käytössä:
+
 -	Katso ottelupöytäkirjan käyttöohje
 
 
 ## 5. Tiedossa olevat ongelmat ja bugit sekä jatkokehitysideat
 
 #### Ongelmat ja bugit:
+
 -	datan syöttämisen rajoitteet/laadun varmistukset ovat osittain puutteellisia
 
 #### Jatkokehitysideat:
