@@ -47,7 +47,7 @@ namespace WpfSalibandyTournament
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             Close();
             playerWindow.RefreshPlayers();
         }
@@ -94,7 +94,7 @@ namespace WpfSalibandyTournament
             {
                 MessageBox.Show("Tapahtui virhe: " + ex.ToString());
             }
-        }      
+        }
         private string FillOK()
         {
 
@@ -102,10 +102,10 @@ namespace WpfSalibandyTournament
                 return "Täytä kaikki tähdellä merkityt kohdat ennen tallentamista.";
             bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);
             List<Player> players = DBSalibandytournament.GetTeamPlayersFromDB(TeamID);
-            foreach(Player p in players)
+            foreach (Player p in players)
             {
                 if (txtPlayernumber.Text == p.Pelinumero)
-                return $"Pelinumero on jo käytössä joukkueessa {cmbTeams.Text}.";
+                    return $"Pelinumero on jo käytössä joukkueessa {cmbTeams.Text}.";
             }
             return "ok";
         }

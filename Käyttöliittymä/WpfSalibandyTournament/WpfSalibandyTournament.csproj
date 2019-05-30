@@ -92,9 +92,6 @@
     <Compile Include="WpfPlayers.xaml.cs">
       <DependentUpon>WpfPlayers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WpfTeamdetails.xaml.cs">
-      <DependentUpon>WpfTeamdetails.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WpfTeameditor.xaml.cs">
       <DependentUpon>WpfTeameditor.xaml</DependentUpon>
     </Compile>
@@ -130,10 +127,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WpfPlayers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WpfTeamdetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

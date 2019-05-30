@@ -118,7 +118,7 @@ namespace WpfSalibandyTournament
         {
             int periods = int.Parse(cmbNumberOfPeriods.Text);
             double periodlenght = double.Parse(cmbPeriodLenght.Text);
-            lblTotalTime.Content = periods*periodlenght+":00";
+            lblTotalTime.Content = periods * periodlenght + ":00";
         }
         //List times of all period ends, stopwatch stops automatically at the end of each period
         private List<string> ListTime()
@@ -209,9 +209,9 @@ namespace WpfSalibandyTournament
         //fill all combobox sources
         private void FillCombo(int homeID, int awayID)
         {
-            NumberOfPeriods = new List<string>(){ "1", "2","3"};
+            NumberOfPeriods = new List<string>() { "1", "2", "3" };
             //0,15 minute period lenght (9 seconds) for testing purposes
-            PeriodLenghts = new List<string>(){ "0,15", "10", "15", "20"};
+            PeriodLenghts = new List<string>() { "0,15", "10", "15", "20" };
             SpecialTeams = new List<string>() { "YV", "AV", "RL", "TM" };
             cmbNumberOfPeriods.ItemsSource = NumberOfPeriods;
             cmbPeriodLenght.ItemsSource = PeriodLenghts;
@@ -255,7 +255,7 @@ namespace WpfSalibandyTournament
         }
         private string MakeGoalSql(List<Goal> goals, int team)
         {
-           string retval = "";
+            string retval = "";
             foreach (Goal g in goals)
             {
                 string aika = $"'{g.Aika}'";
@@ -266,8 +266,8 @@ namespace WpfSalibandyTournament
                 int o = gameID;
                 retval += $"({aika},{et},{mt},{s},{j},{o}),";
             }
-           //remove comma (,) after last row
-           retval = retval.Remove(retval.Length - 1);
+            //remove comma (,) after last row
+            retval = retval.Remove(retval.Length - 1);
             return retval;
         }
         private string MakePenaltySql(List<Penalty> penalties, int team)
@@ -304,6 +304,6 @@ namespace WpfSalibandyTournament
             if (gameStatus == true)
                 ccAllControls.IsEnabled = false;
         }
-        
+
     }
 }
