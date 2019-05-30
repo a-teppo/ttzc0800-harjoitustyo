@@ -78,7 +78,7 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
 -	Erän pituudeksi voi valita 10 sekuntia testikäyttöä varten.
 -	Ottelun voi päättää vain kokonaisajan päättymisen jälkeen.
 
-![](./kuvat/ottelupoytakirja_nakyma.png)
+![](./Kuvat/ottelupoytakirja_nakyma.png)
 
 ## 4. Ohjelman tarvitsemat /mukana tulevat tiedostot/tietokannat
 
@@ -87,12 +87,14 @@ Ohjelmalla voi ylläpitää ja toteuttaa salibandyturnauksen tulospalvelun sekä
  ![](./Kuvat/ER_tietokanta_nakyma.png)
  
 ### Luontiskriptit ja testidatan lisäysskriptit:
-  
+ 
+![](./SQL/CreateSalibandyDatabase.sql "Taulujen ja näkymien luonti tietokantaan")
+
+![](./SQL/InsertValuesToSalibandyDatabase.sql "Testidatan lisäys tietokantaan")
 
 #### Huomioitavaa käytössä:
 
--	Katso ottelupöytäkirjan käyttöohje
-
+![](./poytakirja_kayttoohje.md "Katso otteluohjelman käyttöohje")
 
 ## 5. Tiedossa olevat ongelmat ja bugit sekä jatkokehitysideat
 
