@@ -214,28 +214,39 @@ namespace WpfSalibandyTournament
         }
         private void btnEndGame_Click(object sender, RoutedEventArgs e)
         {
-            string goaltable = "Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu)";
-            DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(homegoals));
-            DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(awaygoals));
-            string penaltytable = "Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu)";
-            DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(homepenalties));
-            DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(awaypenalties));
-            //mark game ended
-            DBSalibandytournament.UpdateDB("Ottelu", "Paatetty = TRUE", $"OtteluID = {gameID}");
-            gameStatus = true;
-            MessageBox.Show("Ottelu on onnistuneesti päätetty.");
-            Close();
+            try
+            {
+                string goaltable = "Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu)";
+                if (homegoals.Count > 0)
+                    DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(homegoals, int.Parse(txtHomeId.Text)));
+                if (awaygoals.Count > 0)
+                    DBSalibandytournament.InsertIntoDB(goaltable, MakeGoalSql(awaygoals, int.Parse(txtAwayId.Text)));
+                string penaltytable = "Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu)";
+                if (homepenalties.Count > 0)
+                    DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(homepenalties, int.Parse(txtHomeId.Text)));
+                if (awaypenalties.Count > 0)
+                    DBSalibandytournament.InsertIntoDB(penaltytable, MakePenaltySql(awaypenalties, int.Parse(txtAwayId.Text)));
+                //mark game ended
+                DBSalibandytournament.UpdateDB("Ottelu", "Paatetty = TRUE", $"OtteluID = {gameID}");
+                gameStatus = true;
+                MessageBox.Show("Ottelu on onnistuneesti päätetty.");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
-        private string MakeGoalSql(List<Goal> goals)
+        private string MakeGoalSql(List<Goal> goals, int team)
         {
-            string retval = "";
+           string retval = "";
             foreach (Goal g in goals)
             {
                 string aika = $"'{g.Aika}'";
                 string et = $"'{g.Erikoistilanne}'";
                 int mt = g.Maalintekija;
                 string s = g.Syottaja == null ? "null" : g.Syottaja.ToString();
-                int j = int.Parse(txtHomeId.Text);
+                int j = team;
                 int o = gameID;
                 retval += $"({aika},{et},{mt},{s},{j},{o}),";
             }
@@ -243,7 +254,7 @@ namespace WpfSalibandyTournament
            retval = retval.Remove(retval.Length - 1);
             return retval;
         }
-        private string MakePenaltySql(List<Penalty> penalties)
+        private string MakePenaltySql(List<Penalty> penalties, int team)
         {
             string retval = "";
             foreach (Penalty p in penalties)
@@ -252,7 +263,7 @@ namespace WpfSalibandyTournament
                 string kesto = $"'{p.Kesto}'";
                 string syy = $"'{p.Syy}'";
                 int henk = p.Henkilo;
-                int j = int.Parse(txtHomeId.Text);
+                int j = team;
                 int o = gameID;
                 retval += $"({aika},{kesto},{syy},{henk},{j},{o}),";
             }

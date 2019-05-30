@@ -90,7 +90,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Rangaistus" IsReadOnly="True" Binding="{Binding Path=Rangaistusnro}" Width="70"></DataGridTextColumn>
                             <DataGridTextColumn Header="Aika" Binding="{Binding Path=Aika}" Width="70"></DataGridTextColumn>
-                            <DataGridComboBoxColumn x:Name="cmbKarsijaKoti" Header="Kärsijä" IsReadOnly="False" SelectedValueBinding="{Binding Path=Karsija, Mode=TwoWay}" SelectedValuePath="HenkiloId" DisplayMemberPath="Pelinumero" Width="70"></DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn x:Name="cmbKarsijaKoti" Header="Kärsijä" IsReadOnly="False" SelectedValueBinding="{Binding Path=Henkilo, Mode=TwoWay}" SelectedValuePath="HenkiloId" DisplayMemberPath="Pelinumero" Width="70"></DataGridComboBoxColumn>
                             <DataGridTextColumn Header="Kesto" IsReadOnly="False"  Binding="{Binding Path=Kesto, Mode=TwoWay}" Width="70"></DataGridTextColumn>
                             <DataGridTextColumn Header="Syy" IsReadOnly="False" Binding="{Binding Path=Syy, Mode=TwoWay}" Width="80"></DataGridTextColumn>
                         </DataGrid.Columns>
@@ -101,7 +101,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Rangaistus" IsReadOnly="True" Binding="{Binding Path=Rangaistusnro}" Width="70"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Aika" Binding="{Binding Path=Aika}" Width="70"></DataGridTextColumn>
-                                <DataGridComboBoxColumn x:Name="cmbKarsijaVieras" Header="Kärsijä" IsReadOnly="False" SelectedValueBinding="{Binding Path=Karsija, Mode=TwoWay}" SelectedValuePath="HenkiloId" DisplayMemberPath="Pelinumero" Width="70"></DataGridComboBoxColumn>
+                                <DataGridComboBoxColumn x:Name="cmbKarsijaVieras" Header="Kärsijä" IsReadOnly="False" SelectedValueBinding="{Binding Path=Henkilo, Mode=TwoWay}" SelectedValuePath="HenkiloId" DisplayMemberPath="Pelinumero" Width="70"></DataGridComboBoxColumn>
                                 <DataGridTextColumn Header="Kesto" IsReadOnly="False"  Binding="{Binding Path=Kesto, Mode=TwoWay}" Width="70"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Syy" IsReadOnly="False" Binding="{Binding Path=Syy, Mode=TwoWay}" Width="80"></DataGridTextColumn>
                             </DataGrid.Columns>

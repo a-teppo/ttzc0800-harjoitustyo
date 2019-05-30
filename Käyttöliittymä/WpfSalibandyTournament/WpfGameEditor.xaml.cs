@@ -30,6 +30,7 @@ namespace WpfSalibandyTournament
             InitializeComponent();
             FillCombo();
             this.gamesWindow = gamesWindow;
+            txtTime.Text = DateTime.Now.ToString("d.M.yyyy HH.00.00");
         }
         public WpfGameEditor(WpfGames gamesWindow, Game game)
         {
@@ -52,9 +53,9 @@ namespace WpfSalibandyTournament
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (!FillOK())
+            if (FillOK() != "ok")
             {
-                MessageBox.Show("Täytä kaikki tähdellä merkityt kentät ennen tallentamista.");
+                MessageBox.Show(FillOK());
                 return;
             }
             DateTime date = Convert.ToDateTime(txtTime.Text);
@@ -84,11 +85,14 @@ namespace WpfSalibandyTournament
         {
             Close();
         }
-        private bool FillOK()
+        private string FillOK()
         {
-            if (txtTime.Text != "" && txtLocation.Text != "" && cmbHomeTeam.SelectedValue != null && cmbAwayTeam.SelectedValue != null)
-                return true;
-            return false;
+            if (cmbAwayTeam.Text == cmbHomeTeam.Text)
+                return "Koti- ja vierasjoukkue ei voi olla sama.";
+            if (txtTime.Text == "" || txtLocation.Text == "" || cmbHomeTeam.SelectedValue == null || cmbAwayTeam.SelectedValue == null)
+                return "Täytä kaikki tähdellä merkityt kentät ennen tallentamista.";
+            else
+                return "ok";
         }
     }
 }
