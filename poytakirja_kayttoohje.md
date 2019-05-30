@@ -9,8 +9,8 @@ Käytä Käynnistä- ja Pysäytä-painikkeita ajanottoon. Maalien ja rangaistuks
 ## Maalien ja rangaistusten lisääminen:
 Lisää maali tai rangaistus halutulle joukkueelle Lisää-painikkeista. Kellossa sillä hetkellä oleva aika tallentuu tapahtuma-ajaksi. Aikaa voi muokata suoraan taulukkoon tarvittaessa. Valitse tekijän/syöttäjän/kärsijän pelinumero alasvetovalikosta (vain kyseiseen joukkueeseen allokoitujen pelaajien numerot ovat valittavissa). Valitse maalille erikoistilannekoodi tarvittaessa. Syötä rangaistukselle kesto (kokonaisluku) ja syy (vapaa kenttä).
 
-### Pakolliset kentät maalille: Aika, Tekijä
-Pakolliset kentät rangaistukselle: Aika, Kärsijä, Kesto, Syy
+**Pakolliset kentät maalille:** Aika, Tekijä
+**Pakolliset kentät rangaistukselle:** Aika, Kärsijä, Kesto, Syy
 (Huom! Lomakkeella ei ole vielä tarkistusta pakollisten kenttien syöttämiselle, joten käyttäjän tulee tarkistaa, että kaikki pakolliset tiedot on täytetty).
 
 ## Ottelun päättäminen
