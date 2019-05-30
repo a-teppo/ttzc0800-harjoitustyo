@@ -23,7 +23,7 @@ namespace WpfSalibandyTournament
                     Etunimi = item[2].ToString(),
                     Pelinumero = item[3].ToString(),
                     Pelipaikka = item[4].ToString(),
-                    Syntymavuosi = int.Parse(item[5].ToString()),
+                    Syntymavuosi = item[5].ToString(),
                     Rooli = item[6].ToString(),
                     JoukkueId = int.Parse(item[7].ToString()),
                     Nimi = item[8].ToString()
@@ -152,7 +152,7 @@ namespace WpfSalibandyTournament
         public string Etunimi { get; set; }
         public string Pelinumero { get; set; }
         public string Pelipaikka { get; set; }
-        public int Syntymavuosi { get; set; }
+        public string Syntymavuosi { get; set; }
         public string Rooli { get; set; }
         public string Nimi { get; set; }
         public int JoukkueId { get; set; }

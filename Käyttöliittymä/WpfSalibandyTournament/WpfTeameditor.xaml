@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-    Title="Joukkue: Lisää/muokkaa" Height="340" Width="300">
+    Title="Joukkue: Lisää/muokkaa" Height="340" Width="305">
     <Grid Background="LightBlue">
-        <StackPanel HorizontalAlignment="Left" Width="100" Background="LightBlue">
+        <StackPanel HorizontalAlignment="Left" Width="115" Background="LightBlue">
             <TextBlock Text="ID:" Height="20" Margin="5 15 5 0"/>
-            <TextBlock Text="Joukkueenimi:" Height="20" Margin="5"/>
-            <TextBlock Text="Paikkakunta" Height="20" Margin="5"/>
-            <TextBlock Text="Seura:" Height="20" Margin="5"/>
-            <TextBlock Text="Logo tiedosto" Height="20" Margin="5"/>
+            <TextBlock Text="Joukkueen nimi(*):" Height="20" Margin="5"/>
+            <TextBlock Text="Paikkakunta(*):" Height="20" Margin="5"/>
+            <TextBlock Text="Seura(*):" Height="20" Margin="5"/>
+            <TextBlock Text="Logo-tiedosto:" Height="20" Margin="5"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Right" Width="200" Grid.ColumnSpan="2" >
+        <StackPanel HorizontalAlignment="Right" Width="190" Grid.ColumnSpan="2" >
             <TextBlock x:Name="txtTeamID" Height="20" Margin="5 15 5 0"/>
             <TextBox x:Name="txtTeamname" Height="20" Margin="5"/>
             <TextBox x:Name="txtLocation" Height="20" Margin="5"/>

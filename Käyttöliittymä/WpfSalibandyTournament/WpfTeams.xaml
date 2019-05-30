@@ -5,16 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Title="Joukkueet" Height="400" Width="500">
+        Title="Joukkueet" SizeToContent="Width" Height="400">
     <Grid Background="LightBlue">
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="btnNewteam" Content="Uusi Joukkue" Height="20" Width="100" Margin="5 4" Click="btnNewteam_Click"/>
                 <Button x:Name="btnClose" Content="Sulje" Height="20" Width="100" Margin="5 4" Click="BtnClose_Click"/>
             </StackPanel>
-            <DataGrid x:Name="dgTeams" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="300">
+            <DataGrid x:Name="dgTeams" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="350" Margin="5 0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="JoukkueId" Binding="{Binding Path=JoukkueId}"/>
                     <DataGridTextColumn Header="JoukkueenNimi" Binding="{Binding Path=Nimi}"/>
                     <DataGridTextColumn Header="Paikkakunta" Binding="{Binding Path=Paikkakunta}"/>
                     <DataGridTextColumn Header="Seura" Binding="{Binding Path=Seura}"/>

@@ -52,7 +52,13 @@ namespace WpfSalibandyTournament
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string Time = $"'{txtTime.Text}'";
+            if (!FillOK())
+            {
+                MessageBox.Show("Täytä kaikki tähdellä merkityt kentät ennen tallentamista.");
+                return;
+            }
+            DateTime date = Convert.ToDateTime(txtTime.Text);
+            string Time = $"'{date.ToString("yyyy-MM-dd HH:mm:ss")}'";
             string Location = $"'{txtLocation.Text}'";
             bool parseokHome = Int32.TryParse(cmbHomeTeam.SelectedValue.ToString(), out int HomeTeamID);
             bool parseokAway = Int32.TryParse(cmbAwayTeam.SelectedValue.ToString(), out int AwayTeamID);
@@ -77,6 +83,12 @@ namespace WpfSalibandyTournament
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+        private bool FillOK()
+        {
+            if (txtTime.Text != "" && txtLocation.Text != "" && cmbHomeTeam.SelectedValue != null && cmbAwayTeam.SelectedValue != null)
+                return true;
+            return false;
         }
     }
 }

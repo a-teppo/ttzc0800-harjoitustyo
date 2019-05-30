@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-        Title="Ottelut" MinHeight="400" Width="550" SizeToContent="WidthAndHeight">
+        Title="Ottelut" SizeToContent="Width" Height="400">
     <Window.Resources>
         <Style x:Key="tfBT" TargetType="{x:Type Button}">
             <Style.Triggers>
@@ -24,7 +24,7 @@
                 <Button x:Name="btnNew" Content="Uusi ottelu" Width="75" Margin="5 2" Click="BtnNew_Click" />
                 <Button x:Name="btnClose" Content="Sulje" Width="75" Margin="5 2" Click="BtnClose_Click"/>
             </StackPanel>
-            <DataGrid x:Name="dgGames" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="300">
+            <DataGrid x:Name="dgGames" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="350" Margin="5 0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="OtteluNro" Binding="{Binding Path=OtteluId}"/>
                     <DataGridTextColumn Header="Aika" Binding="{Binding Path=Aika}"/>

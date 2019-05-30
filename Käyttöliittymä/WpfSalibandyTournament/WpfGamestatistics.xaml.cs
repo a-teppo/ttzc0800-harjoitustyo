@@ -198,7 +198,7 @@ namespace WpfSalibandyTournament
             NumberOfPeriods = new List<string>(){ "1", "2","3"};
             //0,15 minute period lenght (9 seconds) for testing purposes
             PeriodLenghts = new List<string>(){ "0,15", "10", "15", "20"};
-            SpecialTeams = new List<string>() { "YV", "AV", "RL" };
+            SpecialTeams = new List<string>() { "YV", "AV", "RL", "TM" };
             cmbNumberOfPeriods.ItemsSource = NumberOfPeriods;
             cmbPeriodLenght.ItemsSource = PeriodLenghts;
             cmbErikoistilanneKoti.ItemsSource = SpecialTeams;

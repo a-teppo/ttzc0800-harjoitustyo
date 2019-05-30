@@ -56,7 +56,11 @@ namespace WpfSalibandyTournament
 
         private void btnSaveTeam_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!FillOK())
+            {
+                MessageBox.Show("Täytä kaikki tähdellä merkityt kentät ennen tallentamista.");
+                return;
+            }
             string Nimi = $"'{txtTeamname.Text }'";
             string Paikkakunta = $"'{txtLocation.Text}'";
             string Seura = $"'{txtOrganization.Text}'";
@@ -86,11 +90,11 @@ namespace WpfSalibandyTournament
             Close();
             teamsWindow.RefreshTeams();
         }
-
-        private void OpenTeam()
+        private bool FillOK()
         {
-            WpfTeams teams = new WpfTeams();
-            teams.Show();
+            if (txtTeamname.Text != "" && txtOrganization.Text != "" && txtLocation.Text != "")
+                return true;
+            return false;
         }
     }
 }
