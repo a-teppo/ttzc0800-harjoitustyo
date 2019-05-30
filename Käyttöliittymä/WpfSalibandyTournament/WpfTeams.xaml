@@ -9,8 +9,8 @@
     <Grid Background="LightBlue">
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="btnNewteam" Content="Uusi Joukkue" Width="80" Margin="5 2" Click="btnNewteam_Click"/>
-                <Button x:Name="btnClose" Content="Sulje" Width="80" Margin="5 2" Click="BtnClose_Click"/>
+                <Button x:Name="btnNewteam" Content="Uusi Joukkue" Height="20" Width="100" Margin="5 4" Click="btnNewteam_Click"/>
+                <Button x:Name="btnClose" Content="Sulje" Height="20" Width="100" Margin="5 4" Click="BtnClose_Click"/>
             </StackPanel>
             <DataGrid x:Name="dgTeams" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="300">
                 <DataGrid.Columns>
@@ -21,7 +21,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnEditteam" Content="Muokkaa" Click="BtnEditteam_Click"/>
+                                <Button x:Name="btnEditteam" Content="Muokkaa" Height="20" Click="BtnEditteam_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

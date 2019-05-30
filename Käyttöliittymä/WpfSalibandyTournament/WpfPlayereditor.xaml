@@ -5,27 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSalibandyTournament"
         mc:Ignorable="d"
-    Title="Pelaaja: Lisää/muokkaa" Height="350" Width="300">
+    Title="Pelaaja: Lisää/muokkaa" Height="400" Width="300">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Background="LightBlue" Width="100">
-            <TextBlock Text="ID:" Height="15" Margin="5 15 5 5"/>
-            <TextBlock Text="Sukunimi:" Height="15" Margin="5 15 5 5"/>
-            <TextBlock Text="Etunimi:" Height="15" Margin="5"/>
-            <TextBlock Text="Pelinumero:" Height="15" Margin="5"/>
-            <TextBlock Text="Pelipaikka:" Height="15" Margin="5"/>
-            <TextBlock Text="Syntymävuosi:" Height="15" Margin="5"/>
-            <TextBlock Text="Rooli:" Height="15" Margin="5"/>
-            <TextBlock Text="Joukkue:" Height="15" Margin="5"/>
+            <TextBlock Text="ID:" Height="20" Margin="5 15 5 0"/>
+            <TextBlock Text="Sukunimi:" Height="20" Margin="5"/>
+            <TextBlock Text="Etunimi:" Height="20" Margin="5"/>
+            <TextBlock Text="Pelinumero:" Height="20" Margin="5"/>
+            <TextBlock Text="Pelipaikka:" Height="20" Margin="5"/>
+            <TextBlock Text="Syntymävuosi:" Height="20" Margin="5"/>
+            <TextBlock Text="Rooli:" Height="20" Margin="5"/>
+            <TextBlock Text="Joukkue:" Height="20" Margin="5"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Background="LightBlue" Width="200" >
-            <TextBlock x:Name="txtID" Height="15" Margin="5 15 5 5"/>
-            <TextBox x:Name="txtLastname" Height="15" Margin="5 15 5 5"/>
-            <TextBox x:Name="txtFirstname" Height="15" Margin="5"/>
-            <TextBox x:Name="txtPlayernumber" Height="15" Margin="5"/>
-            <TextBox x:Name="txtPosition" Height="15" Margin="5"/>
-            <TextBox x:Name="txtBirthday" Height="15" Margin="5"/>
-            <TextBox x:Name="txtRole" Height="15" Margin="5"/>            
-            <!--<TextBox x:Name="txtTeams" Height="15" Margin="5" Background="LightBlue"/>-->
+            <TextBlock x:Name="txtID" Height="20" Margin="5 15 5 0"/>
+            <TextBox x:Name="txtLastname" Height="20" Margin="5"/>
+            <TextBox x:Name="txtFirstname" Height="20" Margin="5"/>
+            <TextBox x:Name="txtPlayernumber" Height="20" Margin="5"/>
+            <TextBox x:Name="txtPosition" Height="20" Margin="5"/>
+            <TextBox x:Name="txtBirthday" Height="20" Margin="5"/>
+            <TextBox x:Name="txtRole" Height="20" Margin="5"/>             
             <ComboBox x:Name="cmbTeams" Height="20" Margin="5" Background="LightBlue" DisplayMemberPath="Nimi" SelectedValuePath="JoukkueId" />
 
             <Button x:Name="btnSavePerson" Content="Tallenna" Height="20" Width="100" Margin="0 30 0 5" Click="btnSavePerson_Click" />

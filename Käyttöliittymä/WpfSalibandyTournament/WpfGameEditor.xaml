@@ -8,14 +8,14 @@
         Title="Luo/Muokkaa otteluita" Height="350" Width="300">
     <Grid Background="LightBlue">
         <StackPanel HorizontalAlignment="Left" Width="100" Background="LightBlue" Margin="0,0,0,-0.333" Grid.ColumnSpan="3">
-            <TextBlock Text="ID:" Height="15" Margin="5 15 5 5"/>
-            <TextBlock Text="Aika" Height="15" Margin="5"/>
-            <TextBlock Text="Paikka/Kenttä:" Height="15" Margin="5"/>
-            <TextBlock Text="Kotijoukkue:" Height="15" Margin="5"/>
-            <TextBlock Text="Vierasjoukkue:" Height="15" Margin="5"/>
+            <TextBlock Text="ID:" Height="20" Margin="5 15 5 0"/>
+            <TextBlock Text="Aika" Height="20" Margin="5"/>
+            <TextBlock Text="Paikka/Kenttä:" Height="20" Margin="5"/>
+            <TextBlock Text="Kotijoukkue:" Height="20" Margin="5"/>
+            <TextBlock Text="Vierasjoukkue:" Height="20" Margin="5"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Width="200" Grid.ColumnSpan="2" Margin="0,0,0.334,-0.333" Grid.Column="2" >
-            <TextBlock x:Name="txtID" Height="15" Margin="5 15 5 5"/>
+            <TextBlock x:Name="txtID" Height="20" Margin="5 15 5 0"/>
             <TextBox x:Name="txtTime" Text="vvvv-kk-pp hh:mm:ss" Height="20" Margin="5"/>
             <TextBox x:Name="txtLocation" Height="20" Margin="5"/>
             <ComboBox x:Name="cmbHomeTeam" Height="20" Margin="5" Background="LightBlue" DisplayMemberPath="Nimi" SelectedValuePath="JoukkueId" />

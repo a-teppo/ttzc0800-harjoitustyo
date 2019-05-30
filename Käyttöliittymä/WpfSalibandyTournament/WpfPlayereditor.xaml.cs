@@ -59,9 +59,8 @@ namespace WpfSalibandyTournament
             string Playernumber = $"'{txtPlayernumber.Text}'";
             string Position = $"'{txtPosition.Text}'";
             int Birthyear = int.Parse(txtBirthday.Text);
-            string Role = $"'{txtRole.Text}'";           
-            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);
-            
+            string Role = $"'{txtRole.Text}'";
+            bool parseok = Int32.TryParse(cmbTeams.SelectedValue.ToString(), out int TeamID);             
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 string inserttablestring = "Henkilot (Sukunimi, Etunimi, Pelinumero, Pelipaikka, Syntymavuosi, Rooli, JoukkueID)";

@@ -9,8 +9,8 @@
     <Grid Background="LightBlue">
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="btnNewperson" Content="Uusi Henkilö" Width="80" Margin="5 2" Click="btnNewperson_Click"/>
-                <Button x:Name="btnClose" Content="Sulje" Width="80" Margin="5 2" Click="btnClose_Click"/>
+                <Button x:Name="btnNewperson" Content="Uusi Henkilö" Height="20" Width="100" Margin="5 4" Click="btnNewperson_Click"/>
+                <Button x:Name="btnClose" Content="Sulje" Height="20" Width="100" Margin="5 4" Click="btnClose_Click"/>
             </StackPanel>
                     <DataGrid x:Name="dgPlayers" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" MaxHeight="300">
                         <DataGrid.Columns>
@@ -22,7 +22,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="btnEditPerson" Content="Muokkaa" Click="btnEditPerson_Click"/>
+                                <Button Name="btnEditPerson" Content="Muokkaa" Height="20" Click="btnEditPerson_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
