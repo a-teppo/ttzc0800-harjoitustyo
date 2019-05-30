@@ -1,6 +1,8 @@
 # Ottelupöytäkirjan käyttöohjeet
 ## Ennakkovalmistelut:
-Valitse ottelulistasta haluttu ottelu ja klikkaa Avaa. Luo tarvittaessa uusi ottelu. Huom! Joukkueiden ja/tai pelaajien tietoja ei voi muuttaa kesken ottelun. Varmista, että tarvittavat muutokset on tehty ennen ottelun alkua.
+Valitse ottelulistasta haluttu ottelu ja klikkaa Avaa. Luo tarvittaessa uusi ottelu. 
+
+**Huom!** Joukkueiden ja/tai pelaajien tietoja ei voi muuttaa kesken ottelun. Varmista, että tarvittavat muutokset on tehty ennen ottelun alkua.
 
 ## Peliaika:
 Oletuksena peliaika on 3 x 15min. Jos peliajaksi halutaan joku muu, valitse erien määrä ja erän pituus alasvetovalikoista. Testatessa voi valita erän pituudeksi 0,15 (9 sekuntia).
@@ -17,7 +19,7 @@ Käytä Käynnistä- ja Pysäytä-painikkeita ajanottoon. Maalien ja rangaistuks
 
 **Pakolliset kentät rangaistukselle:** Aika, Kärsijä, Kesto, Syy
 
-(Huom! Lomakkeella ei ole vielä tarkistusta pakollisten kenttien syöttämiselle, joten käyttäjän tulee tarkistaa, että kaikki pakolliset tiedot on täytetty).
+**Huom!** Lomakkeella ei ole vielä tarkistusta pakollisten kenttien syöttämiselle, joten käyttäjän tulee tarkistaa, että kaikki pakolliset tiedot on täytetty.
 
 ## Ottelun päättäminen
 Ottelun voi päättää vasta kun peliaika on kulunut loppuun. Ennen ottelun päättämistä, tarkista, että kaikilla riveillä on pakolliset kentät täytettynä.
