@@ -13,7 +13,7 @@ CREATE TABLE Henkilot (
 	Pelinumero TINYINT,
 	Pelipaikka VARCHAR(20),
 	Syntymavuosi SMALLINT,
-	Rooli VARCHAR(10),
+	Rooli VARCHAR(20),
     JoukkueID smallint,
     CONSTRAINT uc_NumeroJoukkue UNIQUE (Pelinumero, JoukkueID),
 	CONSTRAINT fk_Joukkue FOREIGN KEY (JoukkueID)
