@@ -41,5 +41,5 @@ INSERT INTO Maali (Aika, Erikoistilanne, Maalintekija, Syottaja, Joukkue, Ottelu
 ('42:01', 'TM', 1, 2, 2, 3);
 
 INSERT INTO Rangaistus (Aika, Kesto, Syy, Henkilo, Joukkue, Ottelu) VALUES
-('2019-05-14 14:35:10', 2, 'Kampitus', 1, 1, 1),
-('2019-05-14 16:30:10', 5, 'Väkivaltaisuus', 6, 3, 3);
+('14:35', 2, 'Kampitus', 1, 1, 1),
+('30:10', 5, 'Väkivaltaisuus', 6, 3, 3);
